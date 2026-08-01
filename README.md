@@ -35,6 +35,7 @@ the first tagged alpha release.
 | `microsoft-teams/graph-v1` | Global/national-cloud Graph v1.0, chat/channel threads, hosted content, reactions, basic change notifications | Local contract tests |
 | `wechat/official-account` | App token, follower profiles, customer-service messages, drafts, materials, XML/AES webhooks | Local contract tests |
 | `wecom/corp-api` | Corp tokens, members, typed application messages, temporary media, encrypted callbacks | Local contract tests |
+| `qq/bot-api` | App tokens, C2C/group/channel messages, scene-bound URL media, Ed25519 callbacks | Local contract tests |
 | `weibo/v2` | OAuth2, posts/reposts, users/timelines, comments/likes, image upload | Local contract tests |
 | `douyin/openapi` | OAuth2 user/client tokens, users/videos/comments, direct/chunked upload, webhooks | Local contract tests |
 | `kuaishou/openapi` | OAuth2, user profiles, direct/fragment video upload, mandatory-cover publication | Local contract tests |
