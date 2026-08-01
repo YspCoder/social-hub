@@ -33,7 +33,7 @@
 | Instagram | Instagram API；Graph 版本跟随 Meta v26.0；Basic Display 已下线 | [Instagram Platform](https://developers.facebook.com/docs/instagram-platform/) | 通常限 Professional（Business/Creator）账号；高级权限需 App Review/Business Verification |
 | LinkedIn | REST 月度版本，基线 `LinkedIn-Version: 202607`；Talent LTS 另有 202603 | [LinkedIn APIs](https://learn.microsoft.com/en-us/linkedin/) / [versioning](https://learn.microsoft.com/en-us/linkedin/marketing/versioning) | 登录基础权限较易；发帖、组织、Marketing/Talent 多数需产品申请、审核或合作伙伴资质 |
 | TikTok | TikTok API v2 / OAuth v2 | [TikTok for Developers](https://developers.tiktok.com/doc/overview/) / [rate limits](https://developers.tiktok.com/doc/tiktok-api-v2-rate-limit/) | Login/Display 可申请；Content Posting、Research、Business 等需审核，Research 不面向商业用户 |
-| Telegram | Bot API 9.6（2026-04-03） | [Bot API](https://core.telegram.org/bots/api) / [changelog](https://core.telegram.org/bots/api-changelog) | BotFather 建 Bot 即可；无需企业资质；支付、Business、Stars 等受产品规则约束 |
+| Telegram | Bot API 10.2（2026-07-14） | [Bot API](https://core.telegram.org/bots/api) / [changelog](https://core.telegram.org/bots/api-changelog) | BotFather 建 Bot 即可；无需企业资质；支付、Business、Stars 等受产品规则约束 |
 | Discord | REST API v10；Gateway v10 | [Developer Docs](https://docs.discord.com/developers/intro) | 普通 Bot 可用；达到较大 guild 规模及 privileged intents 需 verification/审批，禁止 self-bot |
 | YouTube | YouTube Data API v3 | [Data API v3](https://developers.google.com/youtube/v3) | Google Cloud 项目即可；增配额需审计，未验证项目上传的视频默认 private |
 | Pinterest | Pinterest API v5 | [API v5](https://developers.pinterest.com/docs/api/v5/) / [access tiers](https://developers.pinterest.com/docs/key-concepts/access-tiers/) | Trial 可开发；生产建议申请 Standard；广告/商业能力需 business account 和相应权限 |
@@ -155,7 +155,7 @@
 | Discord | per-route bucket + global；bucket 由响应头动态返回 | 以 `X-RateLimit-Bucket + major parameters` 建桶；严格尊重 `Retry-After/global` |
 | YouTube | quota units，默认项目 10,000/day；2026 起部分方法 granular bucket | weighted quota ledger；调用前预扣 cost、失败也计费；控制台覆盖默认值 |
 | Pinterest | Trial 1000/day；Standard 通用 100/s/user/app，并有 category 分钟配额 | app/user/category 三层 limiter；解析 rate headers |
-| Reddit | OAuth client 速率头 + 商业协议配额 | 解析 `X-Ratelimit-*`；强制唯一 User-Agent；商业配置独立 budget |
+| Reddit | 免费 Data API 为每个 OAuth client ID 100 QPM；另有响应速率头与商业协议配额 | 解析 `X-Ratelimit-*`；强制唯一 User-Agent；商业配置独立 budget |
 | Snapchat | Marketing API app 平均 20 rps、token 平均 10 rps | 双层 token bucket；429 退避，不自动提额 |
 | 微信 | 常见 app token 2h；接口存在每日次数、账号等级/接口独立上限，控制台可变 | 每账号每日 fixed-window + endpoint bucket；token 获取 singleflight，避免刷新风暴耗尽额度 |
 | 微博 | 应用/用户/接口/套餐多维频控；新服务可按 credits/小时计费 | quota provider 从控制台配置；同时管 request rate 和 credits，不写死旧 Wiki 数字 |
@@ -202,7 +202,7 @@
 
 # 任务二：开发任务清单（WBS）
 
-估算单位为人时（h），含编码、单测与 review，不含平台审核等待时间；总计约 **2,172h**，约 13.6 人月（按 160h/人月）。6 个 Sprint 的 alpha 范围是其中约 1,300h，建议 5-6 人跨职能团队并行。
+估算单位为人时（h），含编码、单测与 review，不含平台审核等待时间；总计约 **2,172h**，约 13.6 人月（按 160h/人月）。6 个 Sprint 的 alpha 核心范围约 **2,092h**（不含 M4.7 的其余平台 discovery/spec backlog），建议 5-6 人跨职能团队并行。
 
 ## M0 基础设施（184h）
 
@@ -470,36 +470,40 @@ type Post struct {
 }
 
 type Media struct {
-    ID, URL, MIME string
-    Type          MediaType
-    Size          *int64
-    Width, Height *int
-    Duration      *time.Duration
-    Status        MediaStatus
-    ExpiresAt     *time.Time
-    Extensions    map[string]json.RawMessage
+    Platform      Platform
+    AccountID     AccountID
+    ID, URL, MIME *string
+    Type           MediaType
+    Size           *int64
+    Width, Height  *int
+    Duration       *time.Duration
+    Status         MediaStatus
+    ExpiresAt      *time.Time
+    Extensions     map[string]json.RawMessage
 }
 
 type Comment struct {
-    Platform Platform
+    Platform   Platform
+    AccountID  AccountID
     ID, PostID string
     AuthorID, ParentID *string
-    Text string
-    CreatedAt *time.Time
-    Metrics []Metric
+    Text       string
+    CreatedAt  *time.Time
+    Metrics    []Metric
     Extensions map[string]json.RawMessage
 }
 
 type Message struct {
-    Platform Platform
+    Platform  Platform
+    AccountID AccountID
     ID, ConversationID string
-    SenderID *string
+    SenderID     *string
     RecipientIDs []string
-    Text *string
-    Media []Media
-    ReplyToID *string
-    SentAt *time.Time
-    Direction Direction
+    Text         *string
+    Media        []Media
+    ReplyToID    *string
+    SentAt       *time.Time
+    Direction    Direction
     Extensions map[string]json.RawMessage
 }
 
