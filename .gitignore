@@ -1,0 +1,19 @@
+# Build and test output
+/bin/
+/dist/
+*.out
+coverage.txt
+/coverage
+
+# Local configuration and credentials
+.env
+.env.*
+*.local.yaml
+*.local.yml
+secrets/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

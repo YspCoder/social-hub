@@ -1,0 +1,16 @@
+version: 1
+defaults:
+  timeout: 15s
+platforms:
+  - adapter: x/v2
+    product: api
+    accounts:
+      - id: global-brand
+        client_id: replace-with-client-id
+        access_token_ref: env://SOCIALHUB_X_ACCESS_TOKEN
+        approval:
+          scopes:
+            - tweet.read
+            - tweet.write
+            - users.read
+            - offline.access
