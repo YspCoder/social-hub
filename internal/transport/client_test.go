@@ -3,9 +3,11 @@ package transport
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"strings"
 	"testing"
 	"time"
 
@@ -55,6 +57,48 @@ func TestClientMapsHTTPFailures(t *testing.T) {
 	err = client.JSON(context.Background(), http.MethodGet, "resource", nil, nil, nil)
 	if !errors.Is(err, socialhub.ErrRateLimited) {
 		t.Fatalf("error = %v", err)
+	}
+}
+
+func TestQueryAuthenticator(t *testing.T) {
+	t.Parallel()
+	server := httptest.NewServer(http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		if got := request.URL.Query().Get("access_token"); got != "test-token" {
+			t.Fatalf("access_token = %q", got)
+		}
+		if got := request.Header.Get("Authorization"); got != "" {
+			t.Fatalf("Authorization = %q", got)
+		}
+		_, _ = writer.Write([]byte(`{"ok":true}`))
+	}))
+	defer server.Close()
+	client, err := NewWithAuthenticator(server.URL, server.Client(), socialhub.StaticTokenSource{Value: socialhub.Token{AccessToken: "test-token"}}, "test", "api", QueryAuthenticator("access_token"), nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := client.JSON(context.Background(), http.MethodGet, "resource", nil, nil, nil); err != nil {
+		t.Fatal(err)
+	}
+}
+
+type failingRoundTripper struct{}
+
+func (failingRoundTripper) RoundTrip(*http.Request) (*http.Response, error) {
+	return nil, fmt.Errorf("dial failed")
+}
+
+func TestQueryTokenDoesNotEscapeThroughTransportError(t *testing.T) {
+	t.Parallel()
+	httpClient := &http.Client{Transport: failingRoundTripper{}}
+	client, err := NewWithAuthenticator("https://api.example.com", httpClient, socialhub.StaticTokenSource{Value: socialhub.Token{AccessToken: "sensitive-token"}}, "test", "api", QueryAuthenticator("access_token"), nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = client.JSON(context.Background(), http.MethodGet, "resource", nil, nil, nil)
+	for current := err; current != nil; current = errors.Unwrap(current) {
+		if strings.Contains(current.Error(), "sensitive-token") {
+			t.Fatalf("token escaped through error chain: %v", current)
+		}
 	}
 }
 

@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -22,6 +23,43 @@ type cancelContextKey struct{}
 // ErrorDecoder maps an unsuccessful platform response to a socialhub error.
 type ErrorDecoder func(status int, header http.Header, body []byte) error
 
+// Authenticator applies a platform token to an outgoing request.
+type Authenticator interface {
+	Authenticate(*http.Request, socialhub.Token) error
+}
+
+// AuthenticatorFunc adapts a function to Authenticator.
+type AuthenticatorFunc func(*http.Request, socialhub.Token) error
+
+func (f AuthenticatorFunc) Authenticate(request *http.Request, token socialhub.Token) error {
+	return f(request, token)
+}
+
+// BearerAuthenticator applies an Authorization header.
+type BearerAuthenticator struct{}
+
+func (BearerAuthenticator) Authenticate(request *http.Request, token socialhub.Token) error {
+	tokenType := token.TokenType
+	if tokenType == "" {
+		tokenType = "Bearer"
+	}
+	request.Header.Set("Authorization", tokenType+" "+token.AccessToken)
+	return nil
+}
+
+// QueryAuthenticator applies a token as a query parameter.
+type QueryAuthenticator string
+
+func (parameter QueryAuthenticator) Authenticate(request *http.Request, token socialhub.Token) error {
+	if parameter == "" {
+		return fmt.Errorf("transport: token query parameter is required")
+	}
+	query := request.URL.Query()
+	query.Set(string(parameter), token.AccessToken)
+	request.URL.RawQuery = query.Encode()
+	return nil
+}
+
 // Client executes bounded, authenticated platform requests.
 type Client struct {
 	baseURL          *url.URL
@@ -31,10 +69,16 @@ type Client struct {
 	product          string
 	maxResponseBytes int64
 	decodeError      ErrorDecoder
+	authenticator    Authenticator
 }
 
 // New creates a shared transport client.
 func New(baseURL string, httpClient *http.Client, tokens socialhub.TokenSource, platform socialhub.Platform, product string, decodeError ErrorDecoder) (*Client, error) {
+	return NewWithAuthenticator(baseURL, httpClient, tokens, platform, product, BearerAuthenticator{}, decodeError)
+}
+
+// NewWithAuthenticator creates a client with platform-specific token placement.
+func NewWithAuthenticator(baseURL string, httpClient *http.Client, tokens socialhub.TokenSource, platform socialhub.Platform, product string, authenticator Authenticator, decodeError ErrorDecoder) (*Client, error) {
 	parsed, err := url.Parse(baseURL)
 	if err != nil || parsed.Scheme == "" || parsed.Host == "" {
 		return nil, fmt.Errorf("transport: invalid base URL")
@@ -45,6 +89,9 @@ func New(baseURL string, httpClient *http.Client, tokens socialhub.TokenSource, 
 	if tokens == nil {
 		return nil, fmt.Errorf("transport: token source is required")
 	}
+	if authenticator == nil {
+		return nil, fmt.Errorf("transport: authenticator is required")
+	}
 	return &Client{
 		baseURL:          parsed,
 		httpClient:       httpClient,
@@ -53,6 +100,7 @@ func New(baseURL string, httpClient *http.Client, tokens socialhub.TokenSource, 
 		product:          product,
 		maxResponseBytes: defaultMaxResponseBytes,
 		decodeError:      decodeError,
+		authenticator:    authenticator,
 	}, nil
 }
 
@@ -102,11 +150,9 @@ func (c *Client) NewRequest(ctx context.Context, method, path string, query url.
 	if err != nil {
 		return nil, &socialhub.Error{Code: socialhub.CodeUnauthenticated, Class: socialhub.ClassUserAction, Platform: string(c.platform), Product: c.product, Op: method + " " + path, Cause: err}
 	}
-	tokenType := token.TokenType
-	if tokenType == "" {
-		tokenType = "Bearer"
+	if err := c.authenticator.Authenticate(request, token); err != nil {
+		return nil, &socialhub.Error{Code: socialhub.CodeUnauthenticated, Class: socialhub.ClassUserAction, Platform: string(c.platform), Product: c.product, Op: method + " " + path, Cause: err}
 	}
-	request.Header.Set("Authorization", tokenType+" "+token.AccessToken)
 	request.Header.Set("Accept", "application/json")
 	if callOptions.RequestID != "" {
 		request.Header.Set("X-Request-ID", callOptions.RequestID)
@@ -124,7 +170,7 @@ func (c *Client) Do(request *http.Request, output any) error {
 	}
 	response, err := c.httpClient.Do(request)
 	if err != nil {
-		return &socialhub.Error{Code: socialhub.CodeTemporarilyUnavailable, Class: socialhub.ClassRetryable, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, Cause: err}
+		return &socialhub.Error{Code: socialhub.CodeTemporarilyUnavailable, Class: socialhub.ClassRetryable, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, Cause: sanitizeTransportError(err)}
 	}
 	defer response.Body.Close()
 	body, err := io.ReadAll(io.LimitReader(response.Body, c.maxResponseBytes+1))
@@ -147,6 +193,14 @@ func (c *Client) Do(request *http.Request, output any) error {
 		return &socialhub.Error{Code: socialhub.CodePlatformError, Class: socialhub.ClassPermanent, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, HTTPStatus: response.StatusCode, Cause: err}
 	}
 	return nil
+}
+
+func sanitizeTransportError(err error) error {
+	var urlError *url.Error
+	if errors.As(err, &urlError) && urlError.Err != nil {
+		return urlError.Err
+	}
+	return err
 }
 
 func defaultHTTPError(platform socialhub.Platform, product, operation string, status int, header http.Header) error {

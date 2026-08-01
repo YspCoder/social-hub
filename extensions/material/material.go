@@ -50,3 +50,8 @@ type Manager interface {
 	List(context.Context, ListRequest) (socialhub.Page[Asset], error)
 	Delete(context.Context, string) error
 }
+
+// Provider exposes optional platform material management.
+type Provider interface {
+	MaterialManager() Manager
+}
