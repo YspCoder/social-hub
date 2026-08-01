@@ -20,6 +20,7 @@ the first tagged alpha release.
 | `vimeo/api-v3.4` | OAuth2, users/videos/feeds/comments/likes, typed TUS video upload | Local contract tests |
 | `dailymotion/api-v2` | OAuth2 Client Credentials, managed profiles/videos/playlists, typed multipart video upload | Local contract tests |
 | `flickr/services-api` | OAuth1 HMAC-SHA1, profiles/photos/comments/favorites, photosets, typed streaming upload | Local contract tests |
+| `giphy/v1` | API-key GIF/Sticker discovery, Random ID, analytics pingbacks, typed streaming upload | Local contract tests |
 | `imgur/v3` | Client-ID/OAuth2, profiles/images/comments/Gallery votes, albums, typed streaming upload | Local contract tests |
 | `soundcloud/public-api-v1` | OAuth2.1 PKCE, users/tracks/comments/likes/reposts, typed activity feed and streaming track upload | Local contract tests |
 | `spotify/web-api-v1` | OAuth2 PKCE, profiles/catalog/library/playlists, Premium-gated Spotify Connect playback | Local contract tests |
