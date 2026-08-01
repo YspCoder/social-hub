@@ -15,6 +15,7 @@ the first tagged alpha release.
 | `facebook/page` | OAuth2, Page posts/feed, comments/likes, photo upload, webhooks | Local contract tests |
 | `wechat/official-account` | App token, follower profiles, customer-service messages, drafts, materials, XML/AES webhooks | Local contract tests |
 | `weibo/v2` | OAuth2, posts/reposts, users/timelines, comments/likes, image upload | Local contract tests |
+| `douyin/openapi` | OAuth2 user/client tokens, users/videos/comments, direct/chunked upload, webhooks | Local contract tests |
 
 No adapter has been validated against a real platform account yet. The initial
 development phase intentionally uses deterministic local HTTP fixtures only.

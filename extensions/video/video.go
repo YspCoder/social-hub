@@ -61,3 +61,8 @@ type Workflow interface {
 	Status(context.Context, string) (*Job, error)
 	Abort(context.Context, string) error
 }
+
+// Provider exposes an optional short-video workflow.
+type Provider interface {
+	VideoWorkflow() Workflow
+}
