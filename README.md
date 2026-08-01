@@ -26,6 +26,7 @@ the first tagged alpha release.
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
 | `snapchat/public-profile-v1` | OAuth2, typed read-only Public Profile discovery and Spotlight workflow | Local contract tests |
 | `mastodon/rest` | Per-instance OAuth2, profiles/statuses/home timeline, media, favourites/boosts, instance discovery | Local contract tests |
+| `matrix/client-server-v1.19` | Per-homeserver bearer tokens, profiles/room events, threads/reactions, raw media upload, incremental sync | Local contract tests |
 | `misskey/api` | Per-instance tokens/MiAuth, users/Notes/home timeline, Drive media, emoji reactions, instance discovery | Local contract tests |
 | `bluesky/atproto` | Per-PDS sessions, profiles/posts/feeds/threads, repo records, blobs, likes/reposts | Local contract tests |
 | `threads/api` | OAuth2, text/reply/quote publishing, remote media containers, replies, insights, discovery, moderation, reposts | Local contract tests |
