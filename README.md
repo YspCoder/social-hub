@@ -26,6 +26,7 @@ the first tagged alpha release.
 | `spotify/web-api-v1` | OAuth2 PKCE, profiles/catalog/library/playlists, Premium-gated Spotify Connect playback | Local contract tests |
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
+| `stackexchange/api-v2.3` | API key/OAuth2 PKCE, users/questions/answers/comments, typed Q&A workflow, human-initiated votes | Local contract tests |
 | `snapchat/public-profile-v1` | OAuth2, typed read-only Public Profile discovery and Spotlight workflow | Local contract tests |
 | `mastodon/rest` | Per-instance OAuth2, profiles/statuses/home timeline, media, favourites/boosts, instance discovery | Local contract tests |
 | `matrix/client-server-v1.19` | Per-homeserver bearer tokens, profiles/room events, threads/reactions, raw media upload, incremental sync | Local contract tests |
