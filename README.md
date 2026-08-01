@@ -16,6 +16,7 @@ the first tagged alpha release.
 | `instagram/login-v26` | OAuth2, professional profiles/media/comments, container publishing, webhooks | Local contract tests |
 | `linkedin/rest-202607` | OAuth2/OIDC, versioned posts, comments/reactions, image upload | Local contract tests |
 | `tiktok/v2` | Login Kit OAuth2, Display API, typed Direct Post workflow, webhooks | Local contract tests |
+| `youtube/data-v3` | Google OAuth2, channels/videos/comments/ratings, typed video upload | Local contract tests |
 | `telegram/bot-api` | Bot messages, channel text posts, typed media sends, webhook registration/verification | Local contract tests |
 | `discord/v10` | Bot messages, users/channel history, replies/reactions, Gateway discovery | Local contract tests |
 | `wechat/official-account` | App token, follower profiles, customer-service messages, drafts, materials, XML/AES webhooks | Local contract tests |
