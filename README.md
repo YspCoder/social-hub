@@ -19,6 +19,7 @@ the first tagged alpha release.
 | `kuaishou/openapi` | OAuth2, user profiles, direct/fragment video upload, mandatory-cover publication | Local contract tests |
 | `bilibili/open-platform` | OAuth2, v2 request signing, creator profiles, video/cover upload, archive management | Local contract tests |
 | `xiaohongshu/share-js` | Approved-app token signing and media-only client Share JS handoff | Local contract tests |
+| `zhihu/data-api` | Access Secret auth, site search, hot list, authorized-user content reads, OAuth2 | Local contract tests |
 
 No adapter has been validated against a real platform account yet. The initial
 development phase intentionally uses deterministic local HTTP fixtures only.
