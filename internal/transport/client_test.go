@@ -43,6 +43,30 @@ func TestClientJSONAuthenticatesAndDecodes(t *testing.T) {
 	}
 }
 
+func TestDoWithMetadataReturnsCreationHeader(t *testing.T) {
+	t.Parallel()
+	server := httptest.NewServer(http.HandlerFunc(func(writer http.ResponseWriter, _ *http.Request) {
+		writer.Header().Set("X-RestLi-Id", "urn:li:share:123")
+		writer.WriteHeader(http.StatusCreated)
+	}))
+	defer server.Close()
+	client, err := New(server.URL, server.Client(), socialhub.StaticTokenSource{Value: socialhub.Token{AccessToken: "test-token"}}, "test", "api", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	request, err := client.NewRequest(context.Background(), http.MethodPost, "/resource", nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	metadata, err := client.DoWithMetadata(request, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if metadata.StatusCode != http.StatusCreated || metadata.Header.Get("X-RestLi-Id") != "urn:li:share:123" {
+		t.Fatalf("metadata = %#v", metadata)
+	}
+}
+
 func TestClientMapsHTTPFailures(t *testing.T) {
 	t.Parallel()
 	server := httptest.NewServer(http.HandlerFunc(func(writer http.ResponseWriter, _ *http.Request) {

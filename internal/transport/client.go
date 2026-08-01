@@ -72,6 +72,13 @@ type Client struct {
 	authenticator    Authenticator
 }
 
+// ResponseMetadata exposes response fields that are part of an API contract,
+// such as LinkedIn's X-RestLi-Id creation header.
+type ResponseMetadata struct {
+	StatusCode int
+	Header     http.Header
+}
+
 // New creates a shared transport client.
 func New(baseURL string, httpClient *http.Client, tokens socialhub.TokenSource, platform socialhub.Platform, product string, decodeError ErrorDecoder) (*Client, error) {
 	return NewWithAuthenticator(baseURL, httpClient, tokens, platform, product, BearerAuthenticator{}, decodeError)
@@ -165,34 +172,42 @@ func (c *Client) NewRequest(ctx context.Context, method, path string, query url.
 
 // Do executes a prepared request and decodes its bounded response.
 func (c *Client) Do(request *http.Request, output any) error {
+	_, err := c.DoWithMetadata(request, output)
+	return err
+}
+
+// DoWithMetadata executes a prepared request and returns bounded response
+// metadata in addition to decoding the response body.
+func (c *Client) DoWithMetadata(request *http.Request, output any) (ResponseMetadata, error) {
 	if cancel, ok := request.Context().Value(cancelContextKey{}).(context.CancelFunc); ok {
 		defer cancel()
 	}
 	response, err := c.httpClient.Do(request)
 	if err != nil {
-		return &socialhub.Error{Code: socialhub.CodeTemporarilyUnavailable, Class: socialhub.ClassRetryable, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, Cause: sanitizeTransportError(err)}
+		return ResponseMetadata{}, &socialhub.Error{Code: socialhub.CodeTemporarilyUnavailable, Class: socialhub.ClassRetryable, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, Cause: sanitizeTransportError(err)}
 	}
 	defer response.Body.Close()
+	metadata := ResponseMetadata{StatusCode: response.StatusCode, Header: response.Header.Clone()}
 	body, err := io.ReadAll(io.LimitReader(response.Body, c.maxResponseBytes+1))
 	if err != nil {
-		return &socialhub.Error{Code: socialhub.CodeTemporarilyUnavailable, Class: socialhub.ClassRetryable, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, HTTPStatus: response.StatusCode, Cause: err}
+		return metadata, &socialhub.Error{Code: socialhub.CodeTemporarilyUnavailable, Class: socialhub.ClassRetryable, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, HTTPStatus: response.StatusCode, Cause: err}
 	}
 	if int64(len(body)) > c.maxResponseBytes {
-		return &socialhub.Error{Code: socialhub.CodePlatformError, Class: socialhub.ClassPermanent, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, HTTPStatus: response.StatusCode, PlatformMessage: "response exceeded size limit"}
+		return metadata, &socialhub.Error{Code: socialhub.CodePlatformError, Class: socialhub.ClassPermanent, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, HTTPStatus: response.StatusCode, PlatformMessage: "response exceeded size limit"}
 	}
 	if response.StatusCode < 200 || response.StatusCode >= 300 {
 		if c.decodeError != nil {
-			return c.decodeError(response.StatusCode, response.Header, body)
+			return metadata, c.decodeError(response.StatusCode, response.Header, body)
 		}
-		return defaultHTTPError(c.platform, c.product, request.Method+" "+request.URL.Path, response.StatusCode, response.Header)
+		return metadata, defaultHTTPError(c.platform, c.product, request.Method+" "+request.URL.Path, response.StatusCode, response.Header)
 	}
 	if output == nil || len(body) == 0 {
-		return nil
+		return metadata, nil
 	}
 	if err := json.Unmarshal(body, output); err != nil {
-		return &socialhub.Error{Code: socialhub.CodePlatformError, Class: socialhub.ClassPermanent, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, HTTPStatus: response.StatusCode, Cause: err}
+		return metadata, &socialhub.Error{Code: socialhub.CodePlatformError, Class: socialhub.ClassPermanent, Platform: string(c.platform), Product: c.product, Op: request.Method + " " + request.URL.Path, HTTPStatus: response.StatusCode, Cause: err}
 	}
-	return nil
+	return metadata, nil
 }
 
 func sanitizeTransportError(err error) error {
