@@ -18,6 +18,7 @@ the first tagged alpha release.
 | `tiktok/v2` | Login Kit OAuth2, Display API, typed Direct Post workflow, webhooks | Local contract tests |
 | `youtube/data-v3` | Google OAuth2, channels/videos/comments/ratings, typed video upload | Local contract tests |
 | `vimeo/api-v3.4` | OAuth2, users/videos/feeds/comments/likes, typed TUS video upload | Local contract tests |
+| `soundcloud/public-api-v1` | OAuth2.1 PKCE, users/tracks/comments/likes/reposts, typed activity feed and streaming track upload | Local contract tests |
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
 | `snapchat/public-profile-v1` | OAuth2, typed read-only Public Profile discovery and Spotlight workflow | Local contract tests |
