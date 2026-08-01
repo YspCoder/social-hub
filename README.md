@@ -30,6 +30,7 @@ the first tagged alpha release.
 | `vk/v5.199` | User/community/service tokens, walls/reposts, profiles, photos, comments/likes, messages, Callback API | Local contract tests |
 | `telegram/bot-api` | Bot messages, channel text posts, typed media sends, webhook registration/verification | Local contract tests |
 | `discord/v10` | Bot messages, users/channel history, replies/reactions, Gateway discovery | Local contract tests |
+| `slack/web-api` | Bot/user tokens, channel messages/threads, reactions, external files, signed Events API | Local contract tests |
 | `wechat/official-account` | App token, follower profiles, customer-service messages, drafts, materials, XML/AES webhooks | Local contract tests |
 | `weibo/v2` | OAuth2, posts/reposts, users/timelines, comments/likes, image upload | Local contract tests |
 | `douyin/openapi` | OAuth2 user/client tokens, users/videos/comments, direct/chunked upload, webhooks | Local contract tests |
