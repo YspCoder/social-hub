@@ -31,6 +31,7 @@ the first tagged alpha release.
 | `telegram/bot-api` | Bot messages, channel text posts, typed media sends, webhook registration/verification | Local contract tests |
 | `discord/v10` | Bot messages, users/channel history, replies/reactions, Gateway discovery | Local contract tests |
 | `slack/web-api` | Bot/user tokens, channel messages/threads, reactions, external files, signed Events API | Local contract tests |
+| `lark/openapi` | Feishu/Lark dual-region tokens, chats/threads, reactions, IM resources, encrypted events | Local contract tests |
 | `wechat/official-account` | App token, follower profiles, customer-service messages, drafts, materials, XML/AES webhooks | Local contract tests |
 | `weibo/v2` | OAuth2, posts/reposts, users/timelines, comments/likes, image upload | Local contract tests |
 | `douyin/openapi` | OAuth2 user/client tokens, users/videos/comments, direct/chunked upload, webhooks | Local contract tests |
