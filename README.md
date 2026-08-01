@@ -26,6 +26,7 @@ the first tagged alpha release.
 | `twitch/helix` | OAuth2 user/app tokens, users/VODs, streams, channels, schedules, clips, chat, EventSub webhooks | Local contract tests |
 | `whatsapp/cloud-v25` | User/system-user tokens, text/media/template messages, media lifecycle, business profiles, signed webhooks | Local contract tests |
 | `tumblr/v2` | API-key/OAuth2, NPF posts, inline media, blogs/dashboard/tagged feeds, notes, likes/follows | Local contract tests |
+| `line/messaging-api` | Channel tokens, typed push/reply/multicast messages, profiles, inbound content, quotas, signed webhooks | Local contract tests |
 | `telegram/bot-api` | Bot messages, channel text posts, typed media sends, webhook registration/verification | Local contract tests |
 | `discord/v10` | Bot messages, users/channel history, replies/reactions, Gateway discovery | Local contract tests |
 | `wechat/official-account` | App token, follower profiles, customer-service messages, drafts, materials, XML/AES webhooks | Local contract tests |
