@@ -7,6 +7,15 @@ against the common interfaces in `pkg/socialhub`.
 The project is under active development. The public API is not stable before
 the first tagged alpha release.
 
+## Implemented adapters
+
+| Adapter | Capabilities | Status |
+|---|---|---|
+| `x/v2` | OAuth2 PKCE, posts, users/timelines, replies, reactions, media upload | Local contract tests |
+
+No adapter has been validated against a real platform account yet. The initial
+development phase intentionally uses deterministic local HTTP fixtures only.
+
 ## Development
 
 ```powershell
