@@ -61,6 +61,7 @@ the first tagged alpha release.
 | `wordpress.com/rest-v1.1` | OAuth2, WordPress.com/Jetpack sites, Posts, Comments/Likes, typed publishing and streaming Media | Local contract tests |
 | `patreon/api-v2` | OAuth2 refresh, creator identity/Campaigns/Posts/Members, signed webhooks | Local contract tests |
 | `line/messaging-api` | Channel tokens, typed push/reply/multicast messages, profiles, inbound content, quotas, signed webhooks | Local contract tests |
+| `viber/bot-api` | Commercial Bot tokens, typed messages/broadcasts, subscriber profiles/presence, HMAC webhooks | Local contract tests |
 | `kakao/login-talk-rest` | OAuth2, authorized-user profiles, approved friend discovery, self/friend Talk messages | Local contract tests |
 | `vk/v5.199` | User/community/service tokens, walls/reposts, profiles, photos, comments/likes, messages, Callback API | Local contract tests |
 | `telegram/bot-api` | Bot messages, channel text posts, typed media sends, webhook registration/verification | Local contract tests |
