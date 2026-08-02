@@ -30,6 +30,7 @@ the first tagged alpha release.
 | `discourse/rest-api` | Per-instance API keys, users/Posts/replies, typed Topics/private messages, uploads, likes, signed webhooks | Local contract tests |
 | `forem/api-v1` | Per-instance API keys, users/Articles/threaded comments, typed Article publishing and reactions | Local contract tests |
 | `lemmy/api-v3` | Per-instance JWTs, people/Posts/comments, typed community publishing/votes/private messages, Pictrs image upload | Local contract tests |
+| `nostr/nip-01` | Multi-relay signed events, profiles/notes/threads, NIP-09 deletion, NIP-18 reposts, NIP-25 reactions, NIP-92 media metadata | Local WebSocket contract tests |
 | `dribbble/v2` | OAuth2 Publishing API, owned profiles/Shots, typed image publishing, Projects and Attachments | Local contract tests |
 | `snapchat/public-profile-v1` | OAuth2, typed read-only Public Profile discovery and Spotlight workflow | Local contract tests |
 | `mastodon/rest` | Per-instance OAuth2, profiles/statuses/home timeline, media, favourites/boosts, instance discovery | Local contract tests |
