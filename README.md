@@ -28,6 +28,7 @@ the first tagged alpha release.
 | `applemusic/api` | ES256 developer tokens, storefront/catalog/library/playlists, recently played history | Local contract tests |
 | `lastfm/web-services-v2` | Signed browser auth, track/artist/album discovery, profiles/listening history, now playing, scrobbling, love state | Local contract tests |
 | `musicbrainz/ws-v2` | Credential-free artist/release/recording/work metadata, typed lookup and browse, shared public-service request gate | Local contract tests; public WS/2 smoke |
+| `listenbrainz/api-v1` | Public listening history, playing now, feedback and JSPF playlists; token-authorized scrobbling, feedback and deletion | Local contract tests; public API v1 smoke |
 | `trakt/v2` | OAuth2 browser/device flows, movie/TV catalog, history/watchlist/ratings sync, scrobbling, comments | Local contract tests |
 | `tmdb/v3` | Bearer/API-key app auth, movie/TV/person catalog, user sessions, favorites/watchlist/ratings | Local contract tests |
 | `letterboxd/api-v0` | OAuth2/OIDC, film search/catalog, members/activity/watchlists, diary/review log entries, likes/ratings/watched state | Local contract tests; access-request beta |
