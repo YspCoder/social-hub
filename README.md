@@ -33,6 +33,7 @@ the first tagged alpha release.
 | `myanimelist/v2` | OAuth2 plain PKCE, anime/manga catalog and rankings, profiles, personal list reads and mutations | Local contract tests; API v2 beta |
 | `anilist/graphql-v2` | OAuth2, anime/manga discovery, profiles, media-list tracking, text/list activities, replies and likes | Local contract tests; public GraphQL smoke |
 | `kitsu/edge` | Caller-managed OAuth2 tokens, JSON:API anime/manga discovery, profiles, library tracking, posts and comments | Local contract tests; public edge API smoke |
+| `simkl/v1` | OAuth2 confidential/PKCE/PIN flows, movie/TV/anime catalog and trending, incremental library sync, batched history/ratings, scrobbling | Local contract tests; public CDN smoke |
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
 | `stackexchange/api-v2.3` | API key/OAuth2 PKCE, users/questions/answers/comments, typed Q&A workflow, human-initiated votes | Local contract tests |
