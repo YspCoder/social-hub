@@ -75,6 +75,7 @@ the first tagged alpha release.
 | `weibo/v2` | OAuth2, posts/reposts, users/timelines, comments/likes, image upload | Local contract tests |
 | `douyin/openapi` | OAuth2 user/client tokens, users/videos/comments, direct/chunked upload, webhooks | Local contract tests |
 | `toutiao/openapi` | OAuth2 user/client tokens, authorized profiles, owned videos, direct/chunked upload | Local contract tests |
+| `xigua/openapi` | OAuth2 user/client tokens, authorized profiles, owned videos, 16 GiB multipart workflow | Local contract tests |
 | `kuaishou/openapi` | OAuth2, user profiles, direct/fragment video upload, mandatory-cover publication | Local contract tests |
 | `bilibili/open-platform` | OAuth2, v2 request signing, creator profiles, video/cover upload, archive management | Local contract tests |
 | `xiaohongshu/share-js` | Approved-app token signing and media-only client Share JS handoff | Local contract tests |
