@@ -1,0 +1,73 @@
+package lastfm
+
+import (
+	"net/url"
+	"strconv"
+	"strings"
+	"unicode"
+)
+
+const (
+	maxTextLength       = 1024
+	maxPageSize         = 200
+	maxPageNumber       = 1_000_000
+	maxCredentialLength = 4096
+)
+
+func validEndpoint(value string) bool {
+	parsed, err := url.Parse(value)
+	return err == nil && (parsed.Scheme == "http" || parsed.Scheme == "https") && parsed.Host != "" &&
+		parsed.User == nil && parsed.RawQuery == "" && parsed.Fragment == ""
+}
+
+func validCallback(value string) bool {
+	if value == "" {
+		return true
+	}
+	parsed, err := url.Parse(value)
+	return err == nil && (parsed.Scheme == "http" || parsed.Scheme == "https") && parsed.Host != "" &&
+		parsed.User == nil && parsed.Fragment == ""
+}
+
+func validAPIKey(value string) bool {
+	if len(value) != 32 {
+		return false
+	}
+	for _, character := range value {
+		if !((character >= '0' && character <= '9') || (character >= 'a' && character <= 'f') || (character >= 'A' && character <= 'F')) {
+			return false
+		}
+	}
+	return true
+}
+
+func validCredential(value string) bool {
+	return value != "" && len(value) <= maxCredentialLength && strings.TrimSpace(value) == value && !containsControl(value)
+}
+
+func validText(value string, maximum int) bool {
+	return value != "" && len(value) <= maximum && strings.TrimSpace(value) == value && !containsControl(value)
+}
+
+func containsControl(value string) bool {
+	for _, character := range value {
+		if unicode.IsControl(character) {
+			return true
+		}
+	}
+	return false
+}
+
+func validatePage(cursor string, maxResults int) (int, error) {
+	if maxResults < 0 || maxResults > maxPageSize {
+		return 0, invalidArgument("pagination", "max_results must be between 1 and 200 when set")
+	}
+	if cursor == "" {
+		return 0, nil
+	}
+	page, err := strconv.Atoi(cursor)
+	if err != nil || page < 1 || page > maxPageNumber {
+		return 0, invalidArgument("pagination", "cursor must be a positive page number")
+	}
+	return page, nil
+}
