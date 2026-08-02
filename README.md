@@ -27,6 +27,7 @@ the first tagged alpha release.
 | `spotify/web-api-v1` | OAuth2 PKCE, profiles/catalog/library/playlists, Premium-gated Spotify Connect playback | Local contract tests |
 | `applemusic/api` | ES256 developer tokens, storefront/catalog/library/playlists, recently played history | Local contract tests |
 | `lastfm/web-services-v2` | Signed browser auth, track/artist/album discovery, profiles/listening history, now playing, scrobbling, love state | Local contract tests |
+| `trakt/v2` | OAuth2 browser/device flows, movie/TV catalog, history/watchlist/ratings sync, scrobbling, comments | Local contract tests |
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
 | `stackexchange/api-v2.3` | API key/OAuth2 PKCE, users/questions/answers/comments, typed Q&A workflow, human-initiated votes | Local contract tests |
