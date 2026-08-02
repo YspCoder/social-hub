@@ -32,6 +32,7 @@ the first tagged alpha release.
 | `lemmy/api-v3` | Per-instance JWTs, people/Posts/comments, typed community publishing/votes/private messages, Pictrs image upload | Local contract tests |
 | `nostr/nip-01` | Multi-relay signed events, profiles/notes/threads, NIP-09 deletion, NIP-18 reposts, NIP-25 reactions, NIP-92 media metadata | Local WebSocket contract tests |
 | `dribbble/v2` | OAuth2 Publishing API, owned profiles/Shots, typed image publishing, Projects and Attachments | Local contract tests |
+| `deviantart/api-v1-20240701` | OAuth2.1 PKCE, users/Deviations/galleries/comments, text Status publishing, favourites | Local contract tests |
 | `snapchat/public-profile-v1` | OAuth2, typed read-only Public Profile discovery and Spotlight workflow | Local contract tests |
 | `mastodon/rest` | Per-instance OAuth2, profiles/statuses/home timeline, media, favourites/boosts, instance discovery | Local contract tests |
 | `matrix/client-server-v1.19` | Per-homeserver bearer tokens, profiles/room events, threads/reactions, raw media upload, incremental sync | Local contract tests |
