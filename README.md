@@ -27,6 +27,7 @@ the first tagged alpha release.
 | `spotify/web-api-v1` | OAuth2 PKCE, profiles/catalog/library/playlists, Premium-gated Spotify Connect playback | Local contract tests |
 | `applemusic/api` | ES256 developer tokens, storefront/catalog/library/playlists, recently played history | Local contract tests |
 | `lastfm/web-services-v2` | Signed browser auth, track/artist/album discovery, profiles/listening history, now playing, scrobbling, love state | Local contract tests |
+| `musicbrainz/ws-v2` | Credential-free artist/release/recording/work metadata, typed lookup and browse, shared public-service request gate | Local contract tests; public WS/2 smoke |
 | `trakt/v2` | OAuth2 browser/device flows, movie/TV catalog, history/watchlist/ratings sync, scrobbling, comments | Local contract tests |
 | `tmdb/v3` | Bearer/API-key app auth, movie/TV/person catalog, user sessions, favorites/watchlist/ratings | Local contract tests |
 | `letterboxd/api-v0` | OAuth2/OIDC, film search/catalog, members/activity/watchlists, diary/review log entries, likes/ratings/watched state | Local contract tests; access-request beta |
@@ -75,8 +76,9 @@ the first tagged alpha release.
 | `xiaohongshu/share-js` | Approved-app token signing and media-only client Share JS handoff | Local contract tests |
 | `zhihu/data-api` | Access Secret auth, site search, hot list, authorized-user content reads, OAuth2 | Local contract tests |
 
-No adapter has been validated against a real platform account yet. The initial
-development phase intentionally uses deterministic local HTTP fixtures only.
+No credentialed adapter has been validated against a real platform account yet.
+Deterministic local fixtures remain the required baseline; opt-in public read
+smoke tests are identified in the table above.
 
 ## Development
 
