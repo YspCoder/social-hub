@@ -40,6 +40,7 @@ the first tagged alpha release.
 | `threads/api` | OAuth2, text/reply/quote publishing, remote media containers, replies, insights, discovery, moderation, reposts | Local contract tests |
 | `twitch/helix` | OAuth2 user/app tokens, users/VODs, streams, channels, schedules, clips, chat, EventSub webhooks | Local contract tests |
 | `kick/public-api-v2` | OAuth2.1 user/app tokens, typed channels/V2 livestream discovery/chat, event subscriptions, RSA webhooks | Local contract tests |
+| `peertube/rest-v1` | Per-instance OAuth2 password/refresh grants, accounts/videos/comments, ratings, channels, typed streaming video upload | Local contract tests |
 | `whatsapp/cloud-v25` | User/system-user tokens, text/media/template messages, media lifecycle, business profiles, signed webhooks | Local contract tests |
 | `tumblr/v2` | API-key/OAuth2, NPF posts, inline media, blogs/dashboard/tagged feeds, notes, likes/follows | Local contract tests |
 | `wordpress.com/rest-v1.1` | OAuth2, WordPress.com/Jetpack sites, Posts, Comments/Likes, typed publishing and streaming Media | Local contract tests |
