@@ -40,6 +40,7 @@ the first tagged alpha release.
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
 | `stackexchange/api-v2.3` | API key/OAuth2 PKCE, users/questions/answers/comments, typed Q&A workflow, human-initiated votes | Local contract tests |
+| `hackernews/firebase-v0` | Credential-free users/items, six story feeds, direct comment trees, max item and incremental updates | Local contract tests; public API v0 smoke |
 | `discourse/rest-api` | Per-instance API keys, users/Posts/replies, typed Topics/private messages, uploads, likes, signed webhooks | Local contract tests |
 | `forem/api-v1` | Per-instance API keys, users/Articles/threaded comments, typed Article publishing and reactions | Local contract tests |
 | `lemmy/api-v3` | Per-instance JWTs, people/Posts/comments, typed community publishing/votes/private messages, Pictrs image upload | Local contract tests |
