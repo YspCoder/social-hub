@@ -29,6 +29,7 @@ the first tagged alpha release.
 | `lastfm/web-services-v2` | Signed browser auth, track/artist/album discovery, profiles/listening history, now playing, scrobbling, love state | Local contract tests |
 | `trakt/v2` | OAuth2 browser/device flows, movie/TV catalog, history/watchlist/ratings sync, scrobbling, comments | Local contract tests |
 | `tmdb/v3` | Bearer/API-key app auth, movie/TV/person catalog, user sessions, favorites/watchlist/ratings | Local contract tests |
+| `letterboxd/api-v0` | OAuth2/OIDC, film search/catalog, members/activity/watchlists, diary/review log entries, likes/ratings/watched state | Local contract tests; access-request beta |
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
 | `stackexchange/api-v2.3` | API key/OAuth2 PKCE, users/questions/answers/comments, typed Q&A workflow, human-initiated votes | Local contract tests |
