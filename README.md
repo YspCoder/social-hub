@@ -31,6 +31,7 @@ the first tagged alpha release.
 | `tmdb/v3` | Bearer/API-key app auth, movie/TV/person catalog, user sessions, favorites/watchlist/ratings | Local contract tests |
 | `letterboxd/api-v0` | OAuth2/OIDC, film search/catalog, members/activity/watchlists, diary/review log entries, likes/ratings/watched state | Local contract tests; access-request beta |
 | `myanimelist/v2` | OAuth2 plain PKCE, anime/manga catalog and rankings, profiles, personal list reads and mutations | Local contract tests; API v2 beta |
+| `anilist/graphql-v2` | OAuth2, anime/manga discovery, profiles, media-list tracking, text/list activities, replies and likes | Local contract tests; public GraphQL smoke |
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
 | `stackexchange/api-v2.3` | API key/OAuth2 PKCE, users/questions/answers/comments, typed Q&A workflow, human-initiated votes | Local contract tests |
