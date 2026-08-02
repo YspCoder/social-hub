@@ -23,6 +23,7 @@ the first tagged alpha release.
 | `giphy/v1` | API-key GIF/Sticker discovery, Random ID, analytics pingbacks, typed streaming upload | Local contract tests |
 | `imgur/v3` | Client-ID/OAuth2, profiles/images/comments/Gallery votes, albums, typed streaming upload | Local contract tests |
 | `soundcloud/public-api-v1` | OAuth2.1 PKCE, users/tracks/comments/likes/reposts, typed activity feed and streaming track upload | Local contract tests |
+| `mixcloud/api` | OAuth2 browser flow, users/Cloudcasts/comments/search, Favourite/Repost/Listen Later/Follow, typed streaming MP3 upload | Local contract tests |
 | `spotify/web-api-v1` | OAuth2 PKCE, profiles/catalog/library/playlists, Premium-gated Spotify Connect playback | Local contract tests |
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
