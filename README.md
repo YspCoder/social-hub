@@ -63,6 +63,7 @@ the first tagged alpha release.
 | `line/messaging-api` | Channel tokens, typed push/reply/multicast messages, profiles, inbound content, quotas, signed webhooks | Local contract tests |
 | `viber/bot-api` | Commercial Bot tokens, typed messages/broadcasts, subscriber profiles/presence, HMAC webhooks | Local contract tests |
 | `kakao/login-talk-rest` | OAuth2, authorized-user profiles, approved friend discovery, self/friend Talk messages | Local contract tests |
+| `zalo/official-account` | OAuth v4 PKCE, consultation messages, OA/user profiles, signed webhooks | Local contract tests |
 | `vk/v5.199` | User/community/service tokens, walls/reposts, profiles, photos, comments/likes, messages, Callback API | Local contract tests |
 | `telegram/bot-api` | Bot messages, channel text posts, typed media sends, webhook registration/verification | Local contract tests |
 | `discord/v10` | Bot messages, users/channel history, replies/reactions, Gateway discovery | Local contract tests |
