@@ -18,6 +18,7 @@ the first tagged alpha release.
 | `linkedin/rest-202607` | OAuth2/OIDC, versioned posts, comments/reactions, image upload | Local contract tests |
 | `tiktok/v2` | Login Kit OAuth2, Display API, typed Direct Post workflow, webhooks | Local contract tests |
 | `youtube/data-v3` | Google OAuth2, channels/videos/comments/ratings, typed video upload | Local contract tests |
+| `google-business-profile/v4` | Google OAuth2 refresh, business Locations, Local Posts, typed EVENT/OFFER publishing, Reviews and owner replies | Local contract tests; API access approval required |
 | `vimeo/api-v3.4` | OAuth2, users/videos/feeds/comments/likes, typed TUS video upload | Local contract tests |
 | `dailymotion/api-v2` | OAuth2 Client Credentials, managed profiles/videos/playlists, typed multipart video upload | Local contract tests |
 | `flickr/services-api` | OAuth1 HMAC-SHA1, profiles/photos/comments/favorites, photosets, typed streaming upload | Local contract tests |
