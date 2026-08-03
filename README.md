@@ -13,6 +13,7 @@ the first tagged alpha release.
 |---|---|---|
 | `x/v2` | OAuth2 PKCE, posts, users/timelines, replies, reactions, media upload | Local contract tests |
 | `facebook/page` | OAuth2, Page posts/feed, comments/likes, photo upload, webhooks | Local contract tests |
+| `facebook/messenger-platform` | Page-scoped text/media messages, PSID profiles, signed messaging webhooks | Local contract tests |
 | `instagram/login-v26` | OAuth2, professional profiles/media/comments, container publishing, webhooks | Local contract tests |
 | `linkedin/rest-202607` | OAuth2/OIDC, versioned posts, comments/reactions, image upload | Local contract tests |
 | `tiktok/v2` | Login Kit OAuth2, Display API, typed Direct Post workflow, webhooks | Local contract tests |
