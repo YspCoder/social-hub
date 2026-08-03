@@ -48,6 +48,7 @@ the first tagged alpha release.
 | `forem/api-v1` | Per-instance API keys, users/Articles/threaded comments, typed Article publishing and reactions | Local contract tests |
 | `lemmy/api-v3` | Per-instance JWTs, people/Posts/comments, typed community publishing/votes/private messages, Pictrs image upload | Local contract tests |
 | `nostr/nip-01` | Multi-relay signed events, profiles/notes/threads, NIP-09 deletion, NIP-18 reposts, NIP-25 reactions, NIP-92 media metadata | Local WebSocket contract tests |
+| `indieweb/micropub` | W3C Micropub bearer auth, h-entry publishing, source/config/syndication queries, typed editing and Media Endpoint upload | Local protocol contract tests |
 | `dribbble/v2` | OAuth2 Publishing API, owned profiles/Shots, typed image publishing, Projects and Attachments | Local contract tests |
 | `deviantart/api-v1-20240701` | OAuth2.1 PKCE, users/Deviations/galleries/comments, text Status publishing, favourites | Local contract tests |
 | `snapchat/public-profile-v1` | OAuth2, typed read-only Public Profile discovery and Spotlight workflow | Local contract tests |
