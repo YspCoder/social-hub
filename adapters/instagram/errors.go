@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 	"unicode/utf8"
 
@@ -16,6 +17,7 @@ type graphErrorResponse struct {
 		Type         string `json:"type"`
 		Code         int    `json:"code"`
 		ErrorSubcode int    `json:"error_subcode"`
+		IsTransient  bool   `json:"is_transient"`
 		TraceID      string `json:"fbtrace_id"`
 	} `json:"error"`
 }
@@ -23,15 +25,51 @@ type graphErrorResponse struct {
 func decodeHTTPError(status int, header http.Header, body []byte) error {
 	var response graphErrorResponse
 	_ = json.Unmarshal(body, &response)
+	code, class := classifyHTTPStatus(status)
+	switch response.Error.Code {
+	case 1, 2:
+		code, class = socialhub.CodeTemporarilyUnavailable, socialhub.ClassRetryable
+	case 4, 17, 32, 613:
+		code, class = socialhub.CodeRateLimited, socialhub.ClassRetryable
+	case 10, 200:
+		code, class = socialhub.CodePermissionDenied, socialhub.ClassUserAction
+	case 100:
+		code, class = socialhub.CodeInvalidArgument, socialhub.ClassPermanent
+	case 190:
+		code, class = socialhub.CodeUnauthenticated, socialhub.ClassUserAction
+	case 551:
+		code, class = socialhub.CodeConflict, socialhub.ClassUserAction
+	}
+	if response.Error.ErrorSubcode == 1545041 {
+		code, class = socialhub.CodeConflict, socialhub.ClassUserAction
+	}
+	if response.Error.IsTransient && class != socialhub.ClassRetryable {
+		code, class = socialhub.CodeTemporarilyUnavailable, socialhub.ClassRetryable
+	}
+	platformCode := ""
+	if response.Error.Code != 0 {
+		platformCode = strconv.Itoa(response.Error.Code)
+		if response.Error.ErrorSubcode != 0 {
+			platformCode += "/" + strconv.Itoa(response.Error.ErrorSubcode)
+		}
+	}
+	return &socialhub.Error{
+		Code: code, Class: class, Platform: "instagram", Product: "instagram-login", Op: "http", HTTPStatus: status,
+		PlatformCode: platformCode, PlatformMessage: boundedMessage(response.Error.Message, 512),
+		RequestID: firstNonEmpty(response.Error.TraceID, header.Get("x-fb-trace-id"), header.Get("x-fb-request-id")), RetryAfter: retryAfter(header.Get("Retry-After")),
+	}
+}
+
+func classifyHTTPStatus(status int) (socialhub.ErrorCode, socialhub.ErrorClass) {
 	code, class := socialhub.CodePlatformError, socialhub.ClassPermanent
 	switch status {
-	case http.StatusBadRequest, http.StatusUnprocessableEntity:
+	case http.StatusBadRequest, http.StatusRequestEntityTooLarge, http.StatusUnprocessableEntity:
 		code = socialhub.CodeInvalidArgument
 	case http.StatusUnauthorized:
 		code, class = socialhub.CodeUnauthenticated, socialhub.ClassUserAction
 	case http.StatusForbidden:
 		code, class = socialhub.CodePermissionDenied, socialhub.ClassUserAction
-	case http.StatusNotFound:
+	case http.StatusNotFound, http.StatusGone:
 		code = socialhub.CodeNotFound
 	case http.StatusConflict:
 		code = socialhub.CodeConflict
@@ -42,18 +80,7 @@ func decodeHTTPError(status int, header http.Header, body []byte) error {
 			code, class = socialhub.CodeTemporarilyUnavailable, socialhub.ClassRetryable
 		}
 	}
-	platformCode := ""
-	if response.Error.Code != 0 {
-		platformCode = strconv.Itoa(response.Error.Code)
-		if response.Error.ErrorSubcode != 0 {
-			platformCode += "/" + strconv.Itoa(response.Error.ErrorSubcode)
-		}
-	}
-	return &socialhub.Error{
-		Code: code, Class: class, Platform: "instagram", Product: "instagram-login", HTTPStatus: status,
-		PlatformCode: platformCode, PlatformMessage: boundedMessage(response.Error.Message, 512),
-		RequestID: firstNonEmpty(response.Error.TraceID, header.Get("x-fb-trace-id")), RetryAfter: retryAfter(header.Get("Retry-After")),
-	}
+	return code, class
 }
 
 func wrapError(operation string, code socialhub.ErrorCode, class socialhub.ErrorClass, cause error) error {
@@ -69,7 +96,7 @@ func unsupported(operation, message string) error {
 }
 
 func retryAfter(value string) time.Duration {
-	seconds, err := strconv.ParseFloat(value, 64)
+	seconds, err := strconv.ParseFloat(strings.TrimSpace(value), 64)
 	if err != nil || seconds < 0 {
 		return 0
 	}

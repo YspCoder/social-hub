@@ -13,8 +13,14 @@ Implemented contracts:
 - comment replies and comment deletion;
 - typed `ContainerWorkflow` for IMAGE, REELS, STORIES, and CAROUSEL creation,
   asynchronous status polling, and publication;
+- common text `Messenger` sends and single-message lookup;
+- typed `MessagingWorkflow` for text, image/audio/video HTTPS attachments,
+  owned published-post sharing, and message react/unreact operations;
+- typed `MessagingProfileWorkflow` for consented Instagram-scoped user
+  profiles;
 - `X-Hub-Signature-256` verification, subscription challenge handling, and
-  normalized Instagram change events;
+  normalized Instagram change and messaging events, including message echoes,
+  reads, reactions, postbacks, referrals, and forward-compatible raw events;
 - Graph error and rate-limit mapping with bounded response handling.
 
 Content publication is deliberately not represented as the common
@@ -30,6 +36,22 @@ The required permissions depend on the selected operations:
 - `instagram_business_basic`
 - `instagram_business_content_publish`
 - `instagram_business_manage_comments`
+- `instagram_business_manage_messages`
+
+Instagram messaging is one-to-one and the Instagram user must initiate the
+conversation. Standard automated replies are limited to Meta's 24-hour
+messaging window. `GetMessage` can read details only for messages among the 20
+most recent messages in the conversation. Human Agent, marketing/welcome
+flows, generic templates, persistent menus, and attachment upload are outside
+this adapter's first messaging release; no broader messaging entitlement is
+implied.
+
+Use an IGSID from a verified messaging webhook as `ConversationID`. Public
+HTTPS attachments and owned published posts use `MessagingWorkflow`, because
+the common `SendMessageRequest.MediaIDs` field cannot distinguish those two
+Instagram wire formats. Profile picture URLs returned by
+`GetMessagingUserProfile` expire after a few days and should not be treated as
+durable media.
 
 Apps normally need App Review and the account must be a supported professional
 account. Configure granted permissions in `approval.scopes`; when that list is
@@ -52,4 +74,5 @@ accounts:
         - instagram_business_basic
         - instagram_business_content_publish
         - instagram_business_manage_comments
+        - instagram_business_manage_messages
 ```
