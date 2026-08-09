@@ -13,6 +13,7 @@ the first tagged alpha release.
 |---|---|---|
 | `x/v2` | OAuth2 PKCE, posts, users/timelines, replies, reactions, media upload | Local contract tests |
 | `facebook/page` | OAuth2, Page posts/feed, comments/likes, photo upload, webhooks | Local contract tests |
+| `facebook/marketing-api-v25` | Ad Accounts, paused Campaign/Ad Set/Creative/Ad creation and management, synchronous Insights, appsecret_proof | Local contract tests; App Review, ad-account role, and ads_management/ads_read required |
 | `facebook/messenger-platform` | Page-scoped text/media messages, PSID profiles, signed messaging webhooks | Local contract tests |
 | `instagram/login-v26` | OAuth2, professional profiles/media/comments, container publishing, scoped messaging/profiles, webhooks | Local contract tests |
 | `linkedin/rest-202607` | OAuth2/OIDC, versioned posts, comments/reactions, image upload | Local contract tests |
