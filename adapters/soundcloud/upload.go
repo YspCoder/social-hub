@@ -7,7 +7,7 @@ import (
 	"io"
 	"mime/multipart"
 	"net/http"
-	"path/filepath"
+	"path"
 	"strings"
 
 	"social-hub/pkg/socialhub"
@@ -200,8 +200,8 @@ func writeTrackMultipart(writer *multipart.Writer, fields map[string]string, fil
 			return err
 		}
 	}
-	name := filepath.Base(filename)
-	if name == "." || name == string(filepath.Separator) || strings.TrimSpace(name) == "" {
+	name := path.Base(strings.ReplaceAll(filename, "\\", "/"))
+	if name == "." || name == "/" || strings.TrimSpace(name) == "" {
 		return errors.New("invalid audio filename")
 	}
 	part, err := writer.CreateFormFile("track[asset_data]", name)
