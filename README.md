@@ -19,6 +19,7 @@ the first tagged alpha release.
 | `kuaishou/magnetic-engine-marketing-api` | Advertiser, paused Campaign/Unit/Creative creation and management, real-time reports, OAuth token lifecycle | Local contract tests; continuous per-endpoint revisions, corporate MAPI registration and advertiser authorization required |
 | `tiktok/business-marketing-api-v1.3` | Advertiser, paused Campaign/Ad Group/batch Ad creation and management, synchronous integrated reports, long-term Marketing token exchange | Local contract tests; TikTok for Business app approval, scopes, and advertiser authorization required |
 | `googleads/api-v25` | Customer, Campaign Budget, paused Search Campaign/Ad Group/RSA management, bounded paginated GAQL Search, OAuth2 refresh | Local contract tests; approved developer token, adwords scope, and Customer authorization required |
+| `amazonads/sponsored-products-v3` | Profiles, paused Sponsored Products Campaign/Ad Group/Product Ad/Keyword management, Reporting v3 create/status, Login with Amazon OAuth2 refresh | Local contract tests; Amazon Ads onboarding and profile authorization required; Unified API/reporting migration applies |
 | `facebook/messenger-platform` | Page-scoped text/media messages, PSID profiles, signed messaging webhooks | Local contract tests |
 | `instagram/login-v26` | OAuth2, professional profiles/media/comments, container publishing, scoped messaging/profiles, webhooks | Local contract tests |
 | `linkedin/rest-202607` | OAuth2/OIDC, versioned posts, comments/reactions, image upload | Local contract tests |
