@@ -53,6 +53,7 @@ the first tagged alpha release.
 | `tvmaze/public-api` | Credential-free show/episode/season catalog, broadcast and web schedules, people/credits, incremental updates | Local contract tests; public API smoke |
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
+| `reddit/ads-api-v3` | Ad Account, Funding Instruments, paused Campaign/Ad Group/existing-Post Ad management, synchronous paginated Reports, OAuth2 refresh | Local contract tests; adsread/adsedit authorization required |
 | `stackexchange/api-v2.3` | API key/OAuth2 PKCE, users/questions/answers/comments, typed Q&A workflow, human-initiated votes | Local contract tests |
 | `hackernews/firebase-v0` | Credential-free users/items, six story feeds, direct comment trees, max item and incremental updates | Local contract tests; public API v0 smoke |
 | `discourse/rest-api` | Per-instance API keys, users/Posts/replies, typed Topics/private messages, uploads, likes, signed webhooks | Local contract tests |
