@@ -12,6 +12,7 @@ the first tagged alpha release.
 | Adapter | Capabilities | Status |
 |---|---|---|
 | `x/v2` | OAuth2 PKCE, posts, users/timelines, replies, reactions, media upload | Local contract tests |
+| `x/ads-api-v12` | Ads Account, paused Campaign/Line Item management, safe existing-Tweet association, synchronous Stats, OAuth1 | Local contract tests; Ads API Standard Access and account role required |
 | `facebook/page` | OAuth2, Page posts/feed, comments/likes, photo upload, webhooks | Local contract tests |
 | `facebook/marketing-api-v25` | Ad Accounts, paused Campaign/Ad Set/Creative/Ad creation and management, synchronous Insights, appsecret_proof | Local contract tests; App Review, ad-account role, and ads_management/ads_read required |
 | `oceanengine/marketing-api-v3` | Advertiser-scoped paused Project/Promotion creation and management, synchronous custom reports, OAuth token lifecycle | Local contract tests; Ocean Engine app capability groups and advertiser authorization required |
