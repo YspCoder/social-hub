@@ -16,6 +16,7 @@ the first tagged alpha release.
 | `facebook/marketing-api-v25` | Ad Accounts, paused Campaign/Ad Set/Creative/Ad creation and management, synchronous Insights, appsecret_proof | Local contract tests; App Review, ad-account role, and ads_management/ads_read required |
 | `oceanengine/marketing-api-v3` | Advertiser-scoped paused Project/Promotion creation and management, synchronous custom reports, OAuth token lifecycle | Local contract tests; Ocean Engine app capability groups and advertiser authorization required |
 | `tencentads/marketing-api-v1.3` | Advertiser, paused Campaign/AdGroup creation and management, AdCreative templates, daily/hourly reports, OAuth token lifecycle | Local contract tests; Tencent Ads scopes and advertiser authorization required |
+| `kuaishou/magnetic-engine-marketing-api` | Advertiser, paused Campaign/Unit/Creative creation and management, real-time reports, OAuth token lifecycle | Local contract tests; continuous per-endpoint revisions, corporate MAPI registration and advertiser authorization required |
 | `facebook/messenger-platform` | Page-scoped text/media messages, PSID profiles, signed messaging webhooks | Local contract tests |
 | `instagram/login-v26` | OAuth2, professional profiles/media/comments, container publishing, scoped messaging/profiles, webhooks | Local contract tests |
 | `linkedin/rest-202607` | OAuth2/OIDC, versioned posts, comments/reactions, image upload | Local contract tests |
