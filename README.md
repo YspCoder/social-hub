@@ -22,6 +22,7 @@ the first tagged alpha release.
 | `amazonads/sponsored-products-v3` | Profiles, paused Sponsored Products Campaign/Ad Group/Product Ad/Keyword management, Reporting v3 create/status, Login with Amazon OAuth2 refresh | Local contract tests; Amazon Ads onboarding and profile authorization required; Unified API/reporting migration applies |
 | `pinterest/ads-v5.28` | Ad Accounts, paused Campaign/Ad Group/Ad management, synchronous account Analytics, OAuth2 refresh/client credentials | Local contract tests; approved app, Business Access, advertiser role, billing, and ads:read/ads:write authorization required |
 | `linkedin/marketing-202607` | Ad Account, draft-first Campaign Group/Campaign/Creative management, synchronous Ad Analytics, OAuth2 partner refresh | Local contract tests; Marketing API tier, Ad Account role, and r_ads/rw_ads/r_ads_reporting authorization required |
+| `snapchat/marketing-api-v1` | Ad Account, paused Campaign/Ad Squad/Ad management, synchronous account Stats, OAuth2 refresh | Local contract tests; Business Manager OAuth app, Organization/Ad Account roles, and snapchat-marketing-api authorization required |
 | `facebook/messenger-platform` | Page-scoped text/media messages, PSID profiles, signed messaging webhooks | Local contract tests |
 | `instagram/login-v26` | OAuth2, professional profiles/media/comments, container publishing, scoped messaging/profiles, webhooks | Local contract tests |
 | `linkedin/rest-202607` | OAuth2/OIDC, versioned posts, comments/reactions, image upload | Local contract tests |
