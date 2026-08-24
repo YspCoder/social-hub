@@ -34,7 +34,7 @@ func (c *Client) Capabilities(context.Context) (socialhub.Capabilities, error) {
 		socialhub.CapFetch:         capabilityState(socialhub.CapFetch, true, c.scopes, []string{"instagram_business_basic"}, "reads are limited to the authorized professional account", docURL),
 		socialhub.CapMedia:         {Capability: socialhub.CapMedia, Supported: false, Approval: socialhub.ApprovalUnknown, Reason: "Instagram fetches application-hosted media URLs into publication containers"},
 		socialhub.CapReact:         capabilityState(socialhub.CapReact, true, c.scopes, []string{"instagram_business_manage_comments"}, "comment listing, replies, and deletion are supported; like mutation is unavailable", docURL+"comment-moderation/"),
-		socialhub.CapMessage:       {Capability: socialhub.CapMessage, Supported: false, Approval: socialhub.ApprovalUnknown, Reason: "Instagram Messaging API is a separately approved workflow"},
+		socialhub.CapMessage:       capabilityState(socialhub.CapMessage, true, c.scopes, []string{messagingScope}, "sends one-to-one messages in user-initiated conversations and reads recent message details", docURL+"messaging-api/"),
 		socialhub.CapWebhook:       {Capability: socialhub.CapWebhook, Supported: webhookSupported, Approval: socialhub.ApprovalUnknown, Reason: webhookReason, DocURL: docURL + "webhooks/"},
 	}, nil
 }
@@ -57,7 +57,7 @@ func (c *Client) Publisher() (socialhub.Publisher, bool)         { return nil, f
 func (c *Client) Fetcher() (socialhub.Fetcher, bool)             { return c, true }
 func (c *Client) MediaUploader() (socialhub.MediaUploader, bool) { return nil, false }
 func (c *Client) Reactor() (socialhub.Reactor, bool)             { return c, true }
-func (c *Client) Messenger() (socialhub.Messenger, bool)         { return nil, false }
+func (c *Client) Messenger() (socialhub.Messenger, bool)         { return c, true }
 func (c *Client) WebhookHandler() (socialhub.WebhookHandler, bool) {
 	if c.webhookSecret == "" {
 		return nil, false
@@ -68,6 +68,13 @@ func (c *Client) Close() error { return nil }
 
 // ContainerWorkflow returns Instagram's typed media-container workflow.
 func (c *Client) ContainerWorkflow() ContainerWorkflow { return c.containers }
+
+// MessagingWorkflow returns Instagram's typed text, media, published-post,
+// and message-reaction workflow.
+func (c *Client) MessagingWorkflow() MessagingWorkflow { return c }
+
+// MessagingProfileWorkflow returns the consented IGSID profile reader.
+func (c *Client) MessagingProfileWorkflow() MessagingProfileWorkflow { return c }
 
 func (c *Client) requireScope(operation, scope string) error {
 	if len(c.scopes) == 0 || contains(c.scopes, scope) {
@@ -91,3 +98,4 @@ func contains(values []string, target string) bool {
 var _ socialhub.Client = (*Client)(nil)
 var _ socialhub.Fetcher = (*Client)(nil)
 var _ socialhub.Reactor = (*Client)(nil)
+var _ socialhub.Messenger = (*Client)(nil)

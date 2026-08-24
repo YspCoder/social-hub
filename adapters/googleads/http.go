@@ -1,0 +1,47 @@
+package googleads
+
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"net/http"
+
+	"social-hub/pkg/socialhub"
+)
+
+func (client *Client) getJSON(ctx context.Context, operation, path string, output any, options ...socialhub.CallOption) (http.Header, error) {
+	if err := client.requireAccess(operation); err != nil {
+		return nil, err
+	}
+	request, err := client.api.NewRequest(ctx, http.MethodGet, path, nil, nil, options...)
+	if err != nil {
+		return nil, err
+	}
+	metadata, err := client.api.DoWithMetadata(request, output)
+	return metadata.Header, err
+}
+
+func (client *Client) postJSON(ctx context.Context, operation, path string, input, output any, options ...socialhub.CallOption) (http.Header, error) {
+	if err := client.requireAccess(operation); err != nil {
+		return nil, err
+	}
+	encoded, err := json.Marshal(input)
+	if err != nil {
+		return nil, platformError(operation, socialhub.CodeInvalidArgument, socialhub.ClassPermanent, err)
+	}
+	request, err := client.api.NewRequest(ctx, http.MethodPost, path, nil, bytes.NewReader(encoded), options...)
+	if err != nil {
+		return nil, err
+	}
+	request.Header.Set("Content-Type", "application/json")
+	metadata, err := client.api.DoWithMetadata(request, output)
+	return metadata.Header, err
+}
+
+func (client *Client) searchPath() string {
+	return "/v25/customers/" + client.customerID + "/googleAds:search"
+}
+
+func (client *Client) mutatePath(collection string) string {
+	return "/v25/customers/" + client.customerID + "/" + collection + ":mutate"
+}

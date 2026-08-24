@@ -12,17 +12,48 @@ the first tagged alpha release.
 | Adapter | Capabilities | Status |
 |---|---|---|
 | `x/v2` | OAuth2 PKCE, posts, users/timelines, replies, reactions, media upload | Local contract tests |
+| `x/ads-api-v12` | Ads Account, paused Campaign/Line Item management, safe existing-Tweet association, synchronous Stats, OAuth1 | Local contract tests; Ads API Standard Access and account role required |
 | `facebook/page` | OAuth2, Page posts/feed, comments/likes, photo upload, webhooks | Local contract tests |
-| `instagram/login-v26` | OAuth2, professional profiles/media/comments, container publishing, webhooks | Local contract tests |
+| `facebook/marketing-api-v25` | Ad Accounts, paused Campaign/Ad Set/Creative/Ad creation and management, synchronous Insights, appsecret_proof | Local contract tests; App Review, ad-account role, and ads_management/ads_read required |
+| `oceanengine/marketing-api-v3` | Advertiser-scoped paused Project/Promotion creation and management, synchronous custom reports, OAuth token lifecycle | Local contract tests; Ocean Engine app capability groups and advertiser authorization required |
+| `tencentads/marketing-api-v1.3` | Advertiser, paused Campaign/AdGroup creation and management, AdCreative templates, daily/hourly reports, OAuth token lifecycle | Local contract tests; Tencent Ads scopes and advertiser authorization required |
+| `kuaishou/magnetic-engine-marketing-api` | Advertiser, paused Campaign/Unit/Creative creation and management, real-time reports, OAuth token lifecycle | Local contract tests; continuous per-endpoint revisions, corporate MAPI registration and advertiser authorization required |
+| `tiktok/business-marketing-api-v1.3` | Advertiser, paused Campaign/Ad Group/batch Ad creation and management, synchronous integrated reports, long-term Marketing token exchange | Local contract tests; TikTok for Business app approval, scopes, and advertiser authorization required |
+| `googleads/api-v25` | Customer, Campaign Budget, paused Search Campaign/Ad Group/RSA management, bounded paginated GAQL Search, OAuth2 refresh | Local contract tests; approved developer token, adwords scope, and Customer authorization required |
+| `google/display-video-360-api-v4` | Advertiser, paused Campaign, draft Insertion Order, and draft standard RTB Line Item management/duplication, OAuth2 refresh | Local contract tests; DV360 Partner/Advertiser access and display-video scope required; Bid Manager reporting is separate |
+| `google/campaign-manager-360-api-v5` | Profile/Advertiser, archived-first Campaign management, advertiser-bound Placement/Ad reads, direct ReportData queries, existing Report execution, bounded file downloads, OAuth2 refresh | Local contract tests; CM360 account/API access, user-profile permissions, and dfatrafficking/dfareporting consent required |
+| `google/ad-manager-api-v1` | Network-bound Company/AdUnit/Order/LineItem reads, hidden Interactive Report creation, asynchronous execution and paginated rows, OAuth2 refresh | Local contract tests; v1 Beta, Ad Manager network/API access, user role/team permissions, and admanager scope required for report creation |
+| `google/adsense-management-api-v2` | Publisher-bound Account/AdClient/AdUnit/Channel/Site reads, alerts/payments/policy issues, bounded JSON and saved reports, OAuth2 refresh | Local contract tests; AdSense account and user OAuth required; service accounts unsupported and restricted AdSense for Platforms mutations intentionally omitted |
+| `google/admob-api-v1` | Publisher-bound Account/App/Ad Unit reads, bounded AdMob Network and third-party Mediation reports, OAuth2 refresh | Local contract tests; complete stable v1 REST surface, user OAuth required, 100,000-row streaming report bound; v1beta mutations intentionally omitted |
+| `unity/ads-publisher-manage-api-v2` | Organization-bound Application, Placement, test-mode, and Test Device management, Basic/long-lived Bearer service-account auth | Local contract tests; complete current 18-operation Publisher API surface, required Monetize roles, no Ad Unit or eCPM Target resources |
+| `unity/advertising-management-api-v1` | Organization-bound App, Campaign, Bid, Targeting, Budget, Creative, and Creative Pack management, Basic/long-lived Bearer service-account auth | Local contract tests; all 42 current non-deprecated operations, separately granted Advertising Management API access and Growth roles required; Advertiser v2 migration pending |
+| `unity/advertising-statistics-api-v2` | Organization-bound Acquisition and SKAN reports, 114/7 typed metrics, streaming CSV/JSON with gzip/deflate and CSV EOF verification | Local contract tests; complete current 2-operation Statistics v2 surface, Advertise Stats API Viewer or MMP Viewer role required |
+| `google/analytics-data-api-v1beta` | GA4 Property metadata, compatibility checks, aggregate Core/Realtime/Pivot reports and batches, user OAuth or Service Account JWT | Local contract tests; REST v1beta, GA4 Property access and analytics.readonly scope required; user-level Audience Exports intentionally omitted |
+| `google/youtube-analytics-api-v2` | Channel/content-owner targeted reports, revenue scope gating, private Analytics groups and group items, OAuth2 refresh | Local contract tests; user OAuth only, Channel and CMS Content Owner bindings are isolated from YouTube Data API v3; bulk Reporting API remains separate |
+| `google/youtube-reporting-api-v1` | Channel/content-owner asynchronous bulk-report jobs, system-managed reports, metadata filters, bounded CSV/gzip downloads, user OAuth or Content Owner Service Account JWT | Local contract tests; full v1 REST surface, account-bound `onBehalfOfContentOwner`, secure same-origin downloads; first report can take up to 48 hours |
+| `baidu/marketing-api-2026-08` | Search Account, paused Campaign/AdGroup CRUD, guarded basic Creative CRUD, synchronous/asynchronous reports, OAuth2 exchange/refresh | Local contract tests; unversioned contract verified 2026-08; Baidu developer/app review, API permissions, and advertiser authorization required |
+| `microsoftads/api-v13` | Account validation, paused Search Campaign/Ad Group/RSA/Keyword management, asynchronous Campaign Performance reports with bounded download, Microsoft identity OAuth2 refresh | Local contract tests; developer token, msads.manage consent, and Customer/Account authorization required |
+| `taboola/backstage-api-v1` | Advertiser Account, paused-first Campaign/Campaign Item management, Campaign Summary and Realtime Campaign reports, OAuth2 Client Credentials | Local contract tests; Backstage API credentials and advertiser-account authorization require Taboola approval |
+| `outbrain/amplify-api-v0.1` | Marketer, Budget, disabled-first Campaign/PromotedLink management, Campaign/Promoted Content and periodic reports, Basic login token lifecycle | Local contract tests; Amplify API access and Marketer authorization require Outbrain approval |
+| `criteo/marketing-solutions-api-2026-01` | Advertiser portfolio, Campaign and off-first Ad Set management, advertiser-scoped JSON Statistics reports, OAuth2 Client Credentials | Local contract tests; Criteo API credentials, Campaign/Analytics scopes, and advertiser authorization required |
+| `appleads/campaign-management-api-v5` | Organization ACL, paused Campaign/Ad Group/Keyword/Ad management, product-page Creatives, synchronous reports, ES256 OAuth2 Client Credentials | Local contract tests; Apple Ads Advanced account, API user, organization role, and searchadsorg authorization required |
+| `amazonads/sponsored-products-v3` | Profiles, paused Sponsored Products Campaign/Ad Group/Product Ad/Keyword management, Reporting v3 create/status, Login with Amazon OAuth2 refresh | Local contract tests; Amazon Ads onboarding and profile authorization required; Unified API/reporting migration applies |
+| `pinterest/ads-v5.28` | Ad Accounts, paused Campaign/Ad Group/Ad management, synchronous account Analytics, OAuth2 refresh/client credentials | Local contract tests; approved app, Business Access, advertiser role, billing, and ads:read/ads:write authorization required |
+| `linkedin/marketing-202607` | Ad Account, draft-first Campaign Group/Campaign/Creative management, synchronous Ad Analytics, OAuth2 partner refresh | Local contract tests; Marketing API tier, Ad Account role, and r_ads/rw_ads/r_ads_reporting authorization required |
+| `snapchat/marketing-api-v1` | Ad Account, paused Campaign/Ad Squad/Ad management, synchronous account Stats, OAuth2 refresh | Local contract tests; Business Manager OAuth app, Organization/Ad Account roles, and snapchat-marketing-api authorization required |
+| `facebook/messenger-platform` | Page-scoped text/media messages, PSID profiles, signed messaging webhooks | Local contract tests |
+| `instagram/login-v26` | OAuth2, professional profiles/media/comments, container publishing, scoped messaging/profiles, webhooks | Local contract tests |
 | `linkedin/rest-202607` | OAuth2/OIDC, versioned posts, comments/reactions, image upload | Local contract tests |
 | `tiktok/v2` | Login Kit OAuth2, Display API, typed Direct Post workflow, webhooks | Local contract tests |
 | `youtube/data-v3` | Google OAuth2, channels/videos/comments/ratings, typed video upload | Local contract tests |
+| `google-business-profile/v4` | Google OAuth2 refresh, business Locations, Local Posts, typed EVENT/OFFER publishing, Reviews and owner replies | Local contract tests; API access approval required |
 | `vimeo/api-v3.4` | OAuth2, users/videos/feeds/comments/likes, typed TUS video upload | Local contract tests |
 | `dailymotion/api-v2` | OAuth2 Client Credentials, managed profiles/videos/playlists, typed multipart video upload | Local contract tests |
 | `flickr/services-api` | OAuth1 HMAC-SHA1, profiles/photos/comments/favorites, photosets, typed streaming upload | Local contract tests |
 | `giphy/v1` | API-key GIF/Sticker discovery, Random ID, analytics pingbacks, typed streaming upload | Local contract tests |
 | `imgur/v3` | Client-ID/OAuth2, profiles/images/comments/Gallery votes, albums, typed streaming upload | Local contract tests |
 | `soundcloud/public-api-v1` | OAuth2.1 PKCE, users/tracks/comments/likes/reposts, typed activity feed and streaming track upload | Local contract tests |
+| `strava/api-v3` | OAuth2 refresh, athletes/activities/comments, typed manual activity and streaming file upload, webhooks | Local contract tests |
 | `mixcloud/api` | OAuth2 browser flow, users/Cloudcasts/comments/search, Favourite/Repost/Listen Later/Follow, typed streaming MP3 upload | Local contract tests |
 | `spotify/web-api-v1` | OAuth2 PKCE, profiles/catalog/library/playlists, Premium-gated Spotify Connect playback | Local contract tests |
 | `applemusic/api` | ES256 developer tokens, storefront/catalog/library/playlists, recently played history | Local contract tests |
@@ -39,12 +70,14 @@ the first tagged alpha release.
 | `tvmaze/public-api` | Credential-free show/episode/season catalog, broadcast and web schedules, people/credits, incremental updates | Local contract tests; public API smoke |
 | `pinterest/v5` | OAuth2, owned Pins/account reads, typed board-aware Pin and video upload workflow | Local contract tests |
 | `reddit/data-api` | OAuth2, profiles/submissions/comments, typed subreddit submission, human-initiated votes | Local contract tests |
+| `reddit/ads-api-v3` | Ad Account, Funding Instruments, paused Campaign/Ad Group/existing-Post Ad management, synchronous paginated Reports, OAuth2 refresh | Local contract tests; adsread/adsedit authorization required |
 | `stackexchange/api-v2.3` | API key/OAuth2 PKCE, users/questions/answers/comments, typed Q&A workflow, human-initiated votes | Local contract tests |
 | `hackernews/firebase-v0` | Credential-free users/items, six story feeds, direct comment trees, max item and incremental updates | Local contract tests; public API v0 smoke |
 | `discourse/rest-api` | Per-instance API keys, users/Posts/replies, typed Topics/private messages, uploads, likes, signed webhooks | Local contract tests |
 | `forem/api-v1` | Per-instance API keys, users/Articles/threaded comments, typed Article publishing and reactions | Local contract tests |
 | `lemmy/api-v3` | Per-instance JWTs, people/Posts/comments, typed community publishing/votes/private messages, Pictrs image upload | Local contract tests |
 | `nostr/nip-01` | Multi-relay signed events, profiles/notes/threads, NIP-09 deletion, NIP-18 reposts, NIP-25 reactions, NIP-92 media metadata | Local WebSocket contract tests |
+| `indieweb/micropub` | W3C Micropub bearer auth, h-entry publishing, source/config/syndication queries, typed editing and Media Endpoint upload | Local protocol contract tests |
 | `dribbble/v2` | OAuth2 Publishing API, owned profiles/Shots, typed image publishing, Projects and Attachments | Local contract tests |
 | `deviantart/api-v1-20240701` | OAuth2.1 PKCE, users/Deviations/galleries/comments, text Status publishing, favourites | Local contract tests |
 | `snapchat/public-profile-v1` | OAuth2, typed read-only Public Profile discovery and Spotlight workflow | Local contract tests |
@@ -61,7 +94,9 @@ the first tagged alpha release.
 | `wordpress.com/rest-v1.1` | OAuth2, WordPress.com/Jetpack sites, Posts, Comments/Likes, typed publishing and streaming Media | Local contract tests |
 | `patreon/api-v2` | OAuth2 refresh, creator identity/Campaigns/Posts/Members, signed webhooks | Local contract tests |
 | `line/messaging-api` | Channel tokens, typed push/reply/multicast messages, profiles, inbound content, quotas, signed webhooks | Local contract tests |
+| `viber/bot-api` | Commercial Bot tokens, typed messages/broadcasts, subscriber profiles/presence, HMAC webhooks | Local contract tests |
 | `kakao/login-talk-rest` | OAuth2, authorized-user profiles, approved friend discovery, self/friend Talk messages | Local contract tests |
+| `zalo/official-account` | OAuth v4 PKCE, consultation messages, OA/user profiles, signed webhooks | Local contract tests |
 | `vk/v5.199` | User/community/service tokens, walls/reposts, profiles, photos, comments/likes, messages, Callback API | Local contract tests |
 | `telegram/bot-api` | Bot messages, channel text posts, typed media sends, webhook registration/verification | Local contract tests |
 | `discord/v10` | Bot messages, users/channel history, replies/reactions, Gateway discovery | Local contract tests |
@@ -75,6 +110,7 @@ the first tagged alpha release.
 | `weibo/v2` | OAuth2, posts/reposts, users/timelines, comments/likes, image upload | Local contract tests |
 | `douyin/openapi` | OAuth2 user/client tokens, users/videos/comments, direct/chunked upload, webhooks | Local contract tests |
 | `toutiao/openapi` | OAuth2 user/client tokens, authorized profiles, owned videos, direct/chunked upload | Local contract tests |
+| `xigua/openapi` | OAuth2 user/client tokens, authorized profiles, owned videos, 16 GiB multipart workflow | Local contract tests |
 | `kuaishou/openapi` | OAuth2, user profiles, direct/fragment video upload, mandatory-cover publication | Local contract tests |
 | `bilibili/open-platform` | OAuth2, v2 request signing, creator profiles, video/cover upload, archive management | Local contract tests |
 | `xiaohongshu/share-js` | Approved-app token signing and media-only client Share JS handoff | Local contract tests |

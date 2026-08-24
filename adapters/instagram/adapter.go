@@ -59,7 +59,7 @@ func (a *Adapter) Name() string { return adapterName }
 func (a *Adapter) Metadata() socialhub.Metadata {
 	return socialhub.Metadata{
 		Name: adapterName, Product: "instagram-login", APIVersion: graphVersion, DocURL: docURL,
-		VerifiedAt: time.Date(2026, time.August, 1, 0, 0, 0, 0, time.UTC),
+		VerifiedAt: time.Date(2026, time.August, 3, 0, 0, 0, 0, time.UTC),
 	}
 }
 
@@ -93,8 +93,8 @@ func (a *Adapter) Init(_ context.Context, config socialhub.AdapterConfig, option
 			return invalidArgument("init", "access_token_ref is required for every account")
 		}
 		var typed AccountSettings
-		if err := socialhub.DecodeSettings(account.Settings, &typed); err != nil || strings.TrimSpace(typed.UserID) == "" {
-			return invalidArgument("init", "account.settings.user_id is required")
+		if err := socialhub.DecodeSettings(account.Settings, &typed); err != nil || !validMessagingID(strings.TrimSpace(typed.UserID)) {
+			return invalidArgument("init", "account.settings.user_id must be a decimal Instagram professional account ID")
 		}
 	}
 
@@ -154,7 +154,7 @@ func (a *Adapter) Client(ctx context.Context, accountID socialhub.AccountID, opt
 		return nil, wrapError("client", socialhub.CodeInvalidArgument, socialhub.ClassPermanent, err)
 	}
 	client := &Client{
-		accountID: accountID, userID: typed.UserID, transport: httpTransport,
+		accountID: accountID, userID: strings.TrimSpace(typed.UserID), transport: httpTransport,
 		webhookSecret: webhookSecret, webhookToken: webhookToken, scopes: append([]string(nil), account.Approval.Scopes...), clock: resolved.Clock,
 	}
 	client.containers = &ContainerService{client: client}

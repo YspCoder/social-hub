@@ -69,18 +69,18 @@ func TestAdapterRegistrationAndCapabilitySurface(t *testing.T) {
 	server := httptest.NewServer(http.NotFoundHandler())
 	defer server.Close()
 	adapter, client := newTestAdapter(t, server, []string{
-		"instagram_business_basic", "instagram_business_content_publish", "instagram_business_manage_comments",
+		"instagram_business_basic", "instagram_business_content_publish", "instagram_business_manage_comments", messagingScope,
 	}, true)
 	capabilities, err := client.Capabilities(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, capability := range []socialhub.Capability{CapabilityContainerPublish, socialhub.CapFetch, socialhub.CapReact, socialhub.CapWebhook} {
+	for _, capability := range []socialhub.Capability{CapabilityContainerPublish, socialhub.CapFetch, socialhub.CapReact, socialhub.CapMessage, socialhub.CapWebhook} {
 		if !capabilities.Has(capability) {
 			t.Fatalf("capability %q=%#v", capability, capabilities[capability])
 		}
 	}
-	if capabilities.Has(socialhub.CapPublish) || capabilities.Has(socialhub.CapMedia) || capabilities.Has(socialhub.CapMessage) {
+	if capabilities.Has(socialhub.CapPublish) || capabilities.Has(socialhub.CapMedia) {
 		t.Fatalf("capabilities=%#v", capabilities)
 	}
 	if _, ok := client.Publisher(); ok {
@@ -92,11 +92,14 @@ func TestAdapterRegistrationAndCapabilitySurface(t *testing.T) {
 	if _, ok := client.Reactor(); !ok {
 		t.Fatal("reactor unavailable")
 	}
+	if _, ok := client.Messenger(); !ok {
+		t.Fatal("messenger unavailable")
+	}
 	if _, ok := client.WebhookHandler(); !ok {
 		t.Fatal("webhook unavailable")
 	}
-	if client.ContainerWorkflow() == nil {
-		t.Fatal("container workflow unavailable")
+	if client.ContainerWorkflow() == nil || client.MessagingWorkflow() == nil || client.MessagingProfileWorkflow() == nil {
+		t.Fatal("typed workflow unavailable")
 	}
 	if err := adapter.Close(); err != nil {
 		t.Fatal(err)
