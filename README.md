@@ -1,29 +1,212 @@
-# social-hub
+<div align="center">
 
-`social-hub` is a Go SDK that exposes capability-oriented adapters for social
-media APIs. Applications import only the platform adapters they use and work
-against the common interfaces in `pkg/socialhub`.
+<img src="assets/brand/social-hub-logo.png" width="360" alt="social-hub logo">
 
-The project is under active development. The public API is not stable before
-the first tagged alpha release.
+<p><strong>One typed interface for the world's social platforms.</strong></p>
+<p>A capability-oriented Go SDK and self-hosted MCP bridge for global and China-market social APIs.</p>
+
+<p>
+  <img alt="Go 1.26" src="https://img.shields.io/badge/Go-1.26-00ADD8?logo=go&amp;logoColor=white">
+  <img alt="MCP 2026-07-28" src="https://img.shields.io/badge/MCP-2026--07--28-7C3AED">
+  <img alt="168 adapter packages" src="https://img.shields.io/badge/adapters-168-111827">
+  <img alt="Alpha" src="https://img.shields.io/badge/status-alpha-F43F5E">
+  <img alt="GitHub stars" src="https://img.shields.io/github/stars/YspCoder/social-hub?style=flat&amp;color=2563EB">
+</p>
+
+<p>
+  <a href="README.md"><strong>English</strong></a>
+  ·
+  <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+</div>
+
+---
+
+`social-hub` gives Go applications one stable set of contracts for publishing,
+fetching, media, reactions, messaging, and webhooks while preserving typed
+platform extensions where a lowest-common-denominator API would lose meaning.
+Applications compile only the adapters they use, configure multiple accounts,
+and keep credentials behind runtime secret references.
+
+> [!IMPORTANT]
+> `social-hub` is under active development. The public API is not stable before
+> the first tagged alpha release, and credentialed platform validation is still
+> required before production use.
+
+## Why social-hub
+
+| Principle | What it means in practice |
+|---|---|
+| Capability-oriented | Depend on `Publisher`, `Fetcher`, `Reactor`, `Messenger`, or another narrow interface instead of a monolithic client. |
+| Global + China coverage | Use the same model for X, Facebook, Telegram, WeChat, Weibo, Douyin, and a broad catalog of creator, messaging, ads, analytics, and commerce APIs. |
+| Type-safe normalization | Work with common `User`, `Post`, `Media`, `Comment`, and `Message` models while retaining platform extensions. |
+| Dependency control | Adapter registration follows the `database/sql` pattern; blank-import only what a binary needs. |
+| Multi-account by design | Address every client by `{adapter, account_id}` and keep multiple apps or brands in one strict YAML/JSON configuration. |
+| Credentials stay server-side | Configuration stores `env://` or custom secret references, not plaintext access tokens. |
+| Agent-ready | Run the optional self-hosted MCP server in read-only mode by default and explicitly allow each mutation. |
+
+## Architecture
+
+```text
+ Application / Agent
+         |
+         +------------------------+
+         |                        |
+  pkg/socialhub contracts   cmd/social-hub-mcp
+         |                  (optional, self-hosted)
+         |
+   adapter registry
+         |
+  +------+------+------+-------------------+
+  |             |             |             |
+ X / Meta   Telegram      WeChat       Custom adapter
+  |             |             |             |
+  +-------------+-------------+-------------+
+                Platform APIs
+```
+
+The stable core is deliberately small:
+
+| Capability | Common operations |
+|---|---|
+| `Publisher` | Publish content, inspect asynchronous status, delete posts |
+| `Fetcher` | Get users/posts, list posts and comments |
+| `MediaUploader` | Begin resumable uploads, upload parts, complete and inspect media |
+| `Reactor` | Add/remove reactions, create/delete comments |
+| `Messenger` | Send and retrieve messages |
+| `WebhookHandler` | Verify signatures and decode normalized events |
+
+Platform-specific workflows remain typed. For example, WeChat material
+management lives in `extensions/material`, while short-video publication lives
+in `extensions/video` instead of being forced through an unsafe generic map.
+
+## Quickstart
+
+### 1. Import the adapters you need
+
+Adapter packages register themselves from `init()`. The following binary can
+open X and WeChat Official Account configurations; no other adapter is linked:
+
+```go
+import (
+	_ "social-hub/adapters/wechat/officialaccount"
+	_ "social-hub/adapters/x"
+)
+```
+
+### 2. Configure accounts with secret references
+
+```yaml
+version: 1
+defaults:
+  timeout: 15s
+platforms:
+  - adapter: x/v2
+    accounts:
+      - id: brand-global
+        access_token_ref: env://SOCIAL_HUB_X_TOKEN
+
+  - adapter: wechat/official-account
+    accounts:
+      - id: brand-cn
+        app_id: wx_your_app_id
+        secret_ref: env://SOCIAL_HUB_WECHAT_SECRET
+```
+
+The built-in resolver accepts `env://NAME`. Vault or KMS integrations can be
+provided through `socialhub.WithSecretResolver`.
+
+### 3. Open an adapter and account client
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"os"
+
+	_ "social-hub/adapters/wechat/officialaccount"
+	_ "social-hub/adapters/x"
+	"social-hub/pkg/socialhub"
+)
+
+func main() {
+	ctx := context.Background()
+	file, err := os.Open("social-hub.yaml")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	config, err := socialhub.LoadConfig(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	adapterConfig := config.Platforms[0]
+	adapter, err := socialhub.Open(ctx, adapterConfig.Adapter, adapterConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer adapter.Close()
+
+	client, err := adapter.Client(ctx, "brand-global")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer client.Close()
+
+	capabilities, err := client.Capabilities(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("platform=%s fetch=%t publish=%t\n",
+		client.Platform(),
+		capabilities.Has(socialhub.CapFetch),
+		capabilities.Has(socialhub.CapPublish),
+	)
+}
+```
+
+Capability support is account- and approval-aware. A capability group may be
+available while an individual method remains unsupported by a platform; always
+handle `socialhub.CodeUnsupported` and `socialhub.CodeApprovalRequired`.
 
 ## Agent and MCP support
 
-`cmd/social-hub-mcp` is a self-hosted Model Context Protocol server for agents.
-It uses the official MCP Go SDK, supports local `stdio` and stateless Streamable
-HTTP, and exposes normalized read tools by default. Publish, reaction, comment,
-delete, and message tools are registered only when the deployer explicitly
-allows each operation. Platform credentials remain server-side `secret_ref` or
-`access_token_ref` values and are never accepted as MCP tool arguments.
+`cmd/social-hub-mcp` exposes the common contracts as typed MCP tools for Codex
+and other MCP clients. It supports local `stdio` and stateless Streamable HTTP.
+The server is self-hosted: social-hub never receives your platform credentials.
 
-The default binary includes X, Facebook Page, Telegram Bot API, WeChat Official
-Account, Weibo, and Douyin adapters. Edit the blank imports in
-`cmd/social-hub-mcp/builtin_adapters.go` when building a deployment-specific
-bundle. See [the self-hosting guide](docs/mcp.md), the
+```powershell
+go build -o bin/social-hub-mcp.exe ./cmd/social-hub-mcp
+$env:SOCIAL_HUB_CONFIG = "H:\path\to\social-hub.yaml"
+bin\social-hub-mcp.exe --transport stdio
+```
+
+The default MCP binary includes X, Facebook Page, Telegram, WeChat Official
+Account, Weibo, and Douyin. Read tools are enabled by default; publish,
+reaction, comment, message, and delete tools appear only when the deployer
+explicitly allowlists each operation.
+
+See the [MCP self-hosting guide](docs/mcp.md), the
 [`use-social-hub-mcp` Agent Skill](skills/use-social-hub-mcp/SKILL.md), and the
-[example configuration](examples/mcp/config.yaml).
+[MCP example configuration](examples/mcp/config.yaml).
 
-## Implemented adapters
+## Adapter catalog
+
+The repository currently contains **168 registered adapter packages**. The
+table below records implemented surface area, provider approval requirements,
+and the latest contract-review status. Browse `adapters/` for package-specific
+README files and typed workflows.
+
+<details>
+<summary><strong>View the complete adapter catalog</strong></summary>
+
+<br>
 
 | Adapter | Capabilities | Status |
 |---|---|---|
@@ -200,13 +383,42 @@ No credentialed adapter has been validated against a real platform account yet.
 Deterministic local fixtures remain the required baseline; opt-in public read
 smoke tests are identified in the table above.
 
-## Development
+</details>
+
+## Repository map
+
+```text
+adapters/            Opt-in platform adapter packages
+cmd/social-hub-mcp/  Self-hosted MCP server
+config/              Configuration examples and schemas
+docs/                Architecture and deployment guides
+examples/            Runnable integration examples
+extensions/          Typed platform-specific capabilities
+internal/            Shared transport and implementation details
+pkg/socialhub/       Stable public contracts and models
+skills/              Agent operating guidance
+```
+
+## Documentation
+
+- [Architecture, platform research, WBS, and delivery plan](docs/social-hub-blueprint.md)
+- [MCP self-hosting and Codex configuration](docs/mcp.md)
+- [Agent Skill for operating social-hub MCP](skills/use-social-hub-mcp/SKILL.md)
+- Adapter-specific setup under `adapters/<name>/README.md`
+
+## Development status
+
+The repository uses deterministic local contracts as its baseline. Public
+read-only smoke checks are opt-in, and credentialed adapters still require
+validation against approved platform accounts before production rollout.
 
 ```powershell
+go build ./...
 go test ./...
 go test -race ./...
 go vet ./...
 ```
 
-See [the implementation blueprint](docs/social-hub-blueprint.md) for the
-supported-platform plan, architecture, and delivery milestones.
+When adding an adapter, keep provider-specific APIs typed, document scopes and
+commercial approval gates, and register the package without expanding the core
+interface for a single platform.
