@@ -1,0 +1,6 @@
+interface:
+  display_name: "Use social-hub MCP"
+  short_description: "Safely operate configured social platforms through MCP"
+  default_prompt: "Use $use-social-hub-mcp to inspect my configured social accounts and complete the requested social action safely."
+policy:
+  allow_implicit_invocation: true

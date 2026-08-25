@@ -1,0 +1,8 @@
+version: 1
+defaults:
+  timeout: 15s
+platforms:
+  - adapter: x/v2
+    accounts:
+      - id: brand-x
+        access_token_ref: env://SOCIAL_HUB_X_ACCESS_TOKEN

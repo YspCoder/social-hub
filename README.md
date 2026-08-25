@@ -7,6 +7,22 @@ against the common interfaces in `pkg/socialhub`.
 The project is under active development. The public API is not stable before
 the first tagged alpha release.
 
+## Agent and MCP support
+
+`cmd/social-hub-mcp` is a self-hosted Model Context Protocol server for agents.
+It uses the official MCP Go SDK, supports local `stdio` and stateless Streamable
+HTTP, and exposes normalized read tools by default. Publish, reaction, comment,
+delete, and message tools are registered only when the deployer explicitly
+allows each operation. Platform credentials remain server-side `secret_ref` or
+`access_token_ref` values and are never accepted as MCP tool arguments.
+
+The default binary includes X, Facebook Page, Telegram Bot API, WeChat Official
+Account, Weibo, and Douyin adapters. Edit the blank imports in
+`cmd/social-hub-mcp/builtin_adapters.go` when building a deployment-specific
+bundle. See [the self-hosting guide](docs/mcp.md), the
+[`use-social-hub-mcp` Agent Skill](skills/use-social-hub-mcp/SKILL.md), and the
+[example configuration](examples/mcp/config.yaml).
+
 ## Implemented adapters
 
 | Adapter | Capabilities | Status |
