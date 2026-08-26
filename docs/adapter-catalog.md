@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 183 个已注册 API 产品适配器，其中 182 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 184 个已注册 API 产品适配器，其中 183 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -99,6 +99,7 @@
 | `microsoftads/api-v13` | `adapters/microsoftads` | ❌ | ✅ |
 | `microsoftads/conversions-api-v1` | [`adapters/microsoftads/conversions`](../adapters/microsoftads/conversions/README.md) | ✅ | ❌ |
 | `microsoft-teams/graph-v1` | [`adapters/microsoftteams`](../adapters/microsoftteams/README.md) | ✅ | ✅ |
+| `mintegral/appgrowth-open-api-v1` | [`adapters/mintegral`](../adapters/mintegral/README.md) | ✅ | ❌ |
 | `misskey/api` | [`adapters/misskey`](../adapters/misskey/README.md) | ✅ | ✅ |
 | `mixcloud/api` | [`adapters/mixcloud`](../adapters/mixcloud/README.md) | ✅ | ✅ |
 | `musicbrainz/ws-v2` | [`adapters/musicbrainz`](../adapters/musicbrainz/README.md) | ✅ | ✅ |

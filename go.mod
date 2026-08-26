@@ -1,11 +1,12 @@
 module social-hub
 
-go 1.26
+go 1.26.0
 
 require gopkg.in/yaml.v3 v3.0.1
 
 require (
 	github.com/go-telegram/bot v1.22.0
+	github.com/jageros/mintegral-go v0.1.1
 	github.com/modelcontextprotocol/go-sdk v1.7.0
 )
 
