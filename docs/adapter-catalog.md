@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 174 个已注册 API 产品适配器，其中 173 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 175 个已注册 API 产品适配器，其中 174 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -26,6 +26,7 @@
 | `applovin/max-reporting-apis` | [`adapters/applovinmax`](../adapters/applovinmax/README.md) | ✅ | ❌ |
 | `applovin/growth-reporting-apis` | [`adapters/applovinreporting`](../adapters/applovinreporting/README.md) | ✅ | ❌ |
 | `appsflyer/mobile-s2s-events-api3` | [`adapters/appsflyer`](../adapters/appsflyer/README.md) | ✅ | ❌ |
+| `awin/publisher-api-v1.0` | [`adapters/awinpublisher`](../adapters/awinpublisher/README.md) | ✅ | ❌ |
 | `baidu/marketing-api-2026-08` | [`adapters/baiduads`](../adapters/baiduads/README.md) | ✅ | ✅ |
 | `bilibili/open-platform` | [`adapters/bilibili`](../adapters/bilibili/README.md) | ✅ | ✅ |
 | `bilibili/live-open-platform-v2` | [`adapters/bilibililive`](../adapters/bilibililive/README.md) | ✅ | ❌ |

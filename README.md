@@ -41,11 +41,11 @@ and keep credentials behind runtime secret references.
 | Area | Status | Current baseline |
 |---|:---:|---|
 | Public models and capability interfaces | ✅ | Available in `pkg/socialhub` |
-| Compile-time adapter registry | ✅ | 174 registered API products |
+| Compile-time adapter registry | ✅ | 175 registered API products |
 | Strict YAML/JSON configuration | ✅ | Version `1`; unknown fields fail validation |
 | Runtime secret references | ✅ | Built-in `env://` plus custom resolvers |
-| README coverage for every adapter | ❌ | 173/174 adapter packages |
-| Local test-file coverage for every adapter | ❌ | 104/174 adapter packages |
+| README coverage for every adapter | ❌ | 174/175 adapter packages |
+| Local test-file coverage for every adapter | ❌ | 104/175 adapter packages |
 | Credentialed platform validation for every adapter | ❌ | Not currently claimed |
 | Stable public release | ❌ | Alpha development |
 
@@ -219,7 +219,7 @@ The catalog is generated from the adapter names registered in
 `adapters/**/adapter.go`. It records the Go package, package README, and local
 test-file presence without conflating those signals with live-account approval.
 
-[Browse all 174 registered adapter products →](docs/adapter-catalog.md)
+[Browse all 175 registered adapter products →](docs/adapter-catalog.md)
 
 ## Repository map
 
