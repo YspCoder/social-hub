@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 186 个已注册 API 产品适配器，其中 185 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 187 个已注册 API 产品适配器，其中 186 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -131,6 +131,7 @@
 | `google/search-ads-360-reporting-api-v0` | [`adapters/searchads360`](../adapters/searchads360/README.md) | ✅ | ❌ |
 | `shopee/ads-api-v2` | [`adapters/shopeeads`](../adapters/shopeeads/README.md) | ✅ | ❌ |
 | `simkl/v1` | [`adapters/simkl`](../adapters/simkl/README.md) | ✅ | ✅ |
+| `singular/s2s-events-v2` | [`adapters/singular`](../adapters/singular/README.md) | ✅ | ❌ |
 | `skimlinks/publisher-apis-v4` | [`adapters/skimlinks`](../adapters/skimlinks/README.md) | ✅ | ❌ |
 | `slack/web-api` | [`adapters/slack`](../adapters/slack/README.md) | ✅ | ✅ |
 | `snapchat/public-profile-v1` | [`adapters/snapchat`](../adapters/snapchat/README.md) | ✅ | ✅ |
