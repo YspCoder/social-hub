@@ -8,7 +8,7 @@
 <p>
   <img alt="Go 1.26" src="https://img.shields.io/badge/Go-1.26-00ADD8?logo=go&amp;logoColor=white">
   <img alt="MCP 2026-07-28" src="https://img.shields.io/badge/MCP-2026--07--28-7C3AED">
-  <img alt="182 adapter products" src="https://img.shields.io/badge/adapters-182-111827">
+  <img alt="183 adapter products" src="https://img.shields.io/badge/adapters-183-111827">
   <img alt="Alpha" src="https://img.shields.io/badge/status-alpha-F43F5E">
   <img alt="GitHub stars" src="https://img.shields.io/github/stars/YspCoder/social-hub?style=flat&amp;color=2563EB">
 </p>
@@ -41,11 +41,11 @@ and keep credentials behind runtime secret references.
 | Area | Status | Current baseline |
 |---|:---:|---|
 | Public models and capability interfaces | ✅ | Available in `pkg/socialhub` |
-| Compile-time adapter registry | ✅ | 182 registered API products |
+| Compile-time adapter registry | ✅ | 183 registered API products |
 | Strict YAML/JSON configuration | ✅ | Version `1`; unknown fields fail validation |
 | Runtime secret references | ✅ | Built-in `env://` plus custom resolvers |
-| README coverage for every adapter | ❌ | 181/182 adapter packages |
-| Local test-file coverage for every adapter | ❌ | 104/182 adapter packages |
+| README coverage for every adapter | ❌ | 182/183 adapter packages |
+| Local test-file coverage for every adapter | ❌ | 104/183 adapter packages |
 | Credentialed platform validation for every adapter | ❌ | Not currently claimed |
 | Stable public release | ❌ | Alpha development |
 
@@ -219,7 +219,7 @@ The catalog is generated from the adapter names registered in
 `adapters/**/adapter.go`. It records the Go package, package README, and local
 test-file presence without conflating those signals with live-account approval.
 
-[Browse all 182 registered adapter products →](docs/adapter-catalog.md)
+[Browse all 183 registered adapter products →](docs/adapter-catalog.md)
 
 ## Repository map
 
