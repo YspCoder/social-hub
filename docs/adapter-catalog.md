@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 190 个已注册 API 产品适配器，其中 189 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 191 个已注册 API 产品适配器，其中 190 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -186,6 +186,7 @@
 | `xiaohongshu/share-js` | [`adapters/xiaohongshu`](../adapters/xiaohongshu/README.md) | ✅ | ✅ |
 | `xiaohongshu/spotlight-marketing-api` | [`adapters/xiaohongshumarketing`](../adapters/xiaohongshumarketing/README.md) | ✅ | ❌ |
 | `xiaohongshu/spotlight-reporting-api` | [`adapters/xiaohongshureporting`](../adapters/xiaohongshureporting/README.md) | ✅ | ❌ |
+| `xiaomi/global-reporting-api` | [`adapters/xiaomiglobalreporting`](../adapters/xiaomiglobalreporting/README.md) | ✅ | ❌ |
 | `xigua/openapi` | [`adapters/xigua`](../adapters/xigua/README.md) | ✅ | ✅ |
 | `ximalaya/open-api-v1` | [`adapters/ximalaya`](../adapters/ximalaya/README.md) | ✅ | ❌ |
 | `line-yahoo/display-ads-api-v20` | [`adapters/yahoodisplayads`](../adapters/yahoodisplayads/README.md) | ✅ | ❌ |
