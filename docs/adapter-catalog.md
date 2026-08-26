@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 179 个已注册 API 产品适配器，其中 178 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 180 个已注册 API 产品适配器，其中 179 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -110,6 +110,7 @@
 | `outbrain/amplify-api-v0.1` | [`adapters/outbrain`](../adapters/outbrain/README.md) | ✅ | ✅ |
 | `pangle/app-placement-management-api-v1.1.13` | [`adapters/panglemanagement`](../adapters/panglemanagement/README.md) | ✅ | ❌ |
 | `pangle/publisher-reporting-api-v2` | [`adapters/panglereporting`](../adapters/panglereporting/README.md) | ✅ | ❌ |
+| `partnerize/partners-api-v1.4.99` | [`adapters/partnerize`](../adapters/partnerize/README.md) | ✅ | ❌ |
 | `patreon/api-v2` | [`adapters/patreon`](../adapters/patreon/README.md) | ✅ | ✅ |
 | `pinduoduo/duoduo-jinbao-api-v1` | [`adapters/pddunion`](../adapters/pddunion/README.md) | ✅ | ❌ |
 | `peertube/rest-v1` | [`adapters/peertube`](../adapters/peertube/README.md) | ✅ | ✅ |
