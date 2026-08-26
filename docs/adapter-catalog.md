@@ -2,13 +2,14 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 173 个已注册 API 产品适配器，其中 172 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 174 个已注册 API 产品适配器，其中 173 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
 | 注册名 | Go package | README | 本地测试 |
 | `adjust/s2s-api` | [`adapters/adjust`](../adapters/adjust/README.md) | ✅ | ❌ |
 | `google/ad-manager-api-v1` | [`adapters/admanager`](../adapters/admanager/README.md) | ✅ | ✅ |
+| `admitad/publisher-api` | [`adapters/admitadpublisher`](../adapters/admitadpublisher/README.md) | ✅ | ❌ |
 | `google/admob-api-v1` | [`adapters/admob`](../adapters/admob/README.md) | ✅ | ✅ |
 | `google/adsense-management-api-v2` | [`adapters/adsense`](../adapters/adsense/README.md) | ✅ | ✅ |
 | `airbridge/s2s-events-api-v2` | [`adapters/airbridge`](../adapters/airbridge/README.md) | ✅ | ❌ |
