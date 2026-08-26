@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 172 个已注册 API 产品适配器，其中 171 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 173 个已注册 API 产品适配器，其中 172 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -161,6 +161,7 @@
 | `wecom/corp-api` | [`adapters/wecom`](../adapters/wecom/README.md) | ✅ | ✅ |
 | `weibo/v2` | [`adapters/weibo`](../adapters/weibo/README.md) | ✅ | ✅ |
 | `whatsapp/cloud-v25` | [`adapters/whatsapp`](../adapters/whatsapp/README.md) | ✅ | ✅ |
+| `wikimedia/mediawiki-rest-v1` | [`adapters/wikimedia`](../adapters/wikimedia/README.md) | ✅ | ❌ |
 | `wordpress.com/rest-v1.1` | [`adapters/wordpresscom`](../adapters/wordpresscom/README.md) | ✅ | ✅ |
 | `x/v2` | [`adapters/x`](../adapters/x/README.md) | ✅ | ✅ |
 | `x/ads-api-v12` | [`adapters/x/ads`](../adapters/x/ads/README.md) | ✅ | ✅ |
