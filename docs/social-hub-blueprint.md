@@ -1,6 +1,6 @@
 # social-hub 架构与维护蓝图
 
-> 基线日期：2026-08-25（Asia/Shanghai）
+> 基线日期：2026-08-26（Asia/Shanghai）
 
 本文描述仓库当前采用的架构、使用边界和维护规则。平台版本、认证、配额与审批条件变化频繁，具体接入信息以对应 `adapters/<name>/README.md` 和官方文档为准。
 
@@ -26,9 +26,9 @@
 | 共享 HTTP transport | ✅ | `internal/transport` |
 | 素材与视频 typed extension | ✅ | `extensions/material`、`extensions/video` |
 | 自部署 MCP 服务 | ✅ | `cmd/social-hub-mcp`、`pkg/mcpserver` |
-| 已注册 API 产品 | ✅ | 168 |
-| 适配器 README 全覆盖 | ❌ | 167/168 |
-| 适配器本地测试文件全覆盖 | ❌ | 104/168 |
+| 已注册 API 产品 | ✅ | 169 |
+| 适配器 README 全覆盖 | ❌ | 168/169 |
+| 适配器本地测试文件全覆盖 | ❌ | 104/169 |
 | 凭据化真实平台全覆盖 | ❌ | 当前不作此承诺 |
 | 稳定公开版本 | ❌ | Alpha 开发阶段 |
 
