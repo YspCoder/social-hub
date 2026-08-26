@@ -26,9 +26,9 @@
 | 共享 HTTP transport | ✅ | `internal/transport` |
 | 素材与视频 typed extension | ✅ | `extensions/material`、`extensions/video` |
 | 自部署 MCP 服务 | ✅ | `cmd/social-hub-mcp`、`pkg/mcpserver` |
-| 已注册 API 产品 | ✅ | 175 |
-| 适配器 README 全覆盖 | ❌ | 174/175 |
-| 适配器本地测试文件全覆盖 | ❌ | 104/175 |
+| 已注册 API 产品 | ✅ | 176 |
+| 适配器 README 全覆盖 | ❌ | 175/176 |
+| 适配器本地测试文件全覆盖 | ❌ | 104/176 |
 | 凭据化真实平台全覆盖 | ❌ | 当前不作此承诺 |
 | 稳定公开版本 | ❌ | Alpha 开发阶段 |
 

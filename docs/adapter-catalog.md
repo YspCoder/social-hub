@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 175 个已注册 API 产品适配器，其中 174 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 176 个已注册 API 产品适配器，其中 175 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -34,6 +34,7 @@
 | `google/blogger-api-v3` | [`adapters/blogger`](../adapters/blogger/README.md) | ✅ | ❌ |
 | `bluesky/atproto` | [`adapters/bluesky`](../adapters/bluesky/README.md) | ✅ | ✅ |
 | `branch/events-api-v2` | [`adapters/branch`](../adapters/branch/README.md) | ✅ | ❌ |
+| `cj/publisher-graphql-link-search-v2` | [`adapters/cjpublisher`](../adapters/cjpublisher/README.md) | ✅ | ❌ |
 | `google/campaign-manager-360-api-v5` | [`adapters/cm360`](../adapters/cm360/README.md) | ✅ | ✅ |
 | `criteo/marketing-solutions-api-2026-01` | [`adapters/criteo`](../adapters/criteo/README.md) | ✅ | ✅ |
 | `dailymotion/api-v2` | [`adapters/dailymotion`](../adapters/dailymotion/README.md) | ✅ | ✅ |
