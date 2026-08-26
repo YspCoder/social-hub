@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 178 个已注册 API 产品适配器，其中 177 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 179 个已注册 API 产品适配器，其中 178 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -65,6 +65,7 @@
 | `google-places/places-api-new-v1` | [`adapters/googleplaces`](../adapters/googleplaces/README.md) | ✅ | ❌ |
 | `hackernews/firebase-v0` | [`adapters/hackernews`](../adapters/hackernews/README.md) | ✅ | ✅ |
 | `imgur/v3` | [`adapters/imgur`](../adapters/imgur/README.md) | ✅ | ✅ |
+| `impact/partner-api-v16` | [`adapters/impactpartner`](../adapters/impactpartner/README.md) | ✅ | ❌ |
 | `instagram/login-v26` | [`adapters/instagram`](../adapters/instagram/README.md) | ✅ | ✅ |
 | `ironsource/advertiser-reporting-api-v4` | [`adapters/ironsourcereporting`](../adapters/ironsourcereporting/README.md) | ✅ | ❌ |
 | `apple/itunes-search-api` | [`adapters/itunessearch`](../adapters/itunessearch/README.md) | ✅ | ❌ |
