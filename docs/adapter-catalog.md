@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 170 个已注册 API 产品适配器，其中 169 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 171 个已注册 API 产品适配器，其中 170 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -48,6 +48,7 @@
 | `facebook/page` | [`adapters/facebook/page`](../adapters/facebook/page/README.md) | ✅ | ✅ |
 | `flickr/services-api` | [`adapters/flickr`](../adapters/flickr/README.md) | ✅ | ✅ |
 | `forem/api-v1` | [`adapters/forem`](../adapters/forem/README.md) | ✅ | ✅ |
+| `foursquare/places-api-2025-06-17` | [`adapters/foursquare`](../adapters/foursquare/README.md) | ✅ | ❌ |
 | `giphy/v1` | [`adapters/giphy`](../adapters/giphy/README.md) | ✅ | ✅ |
 | `github/rest-api` | [`adapters/github`](../adapters/github/README.md) | ✅ | ❌ |
 | `gitlab/rest-api-v4` | [`adapters/gitlab`](../adapters/gitlab/README.md) | ✅ | ❌ |
