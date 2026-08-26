@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 185 个已注册 API 产品适配器，其中 184 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 186 个已注册 API 产品适配器，其中 185 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -123,6 +123,7 @@
 | `pixabay/api` | [`adapters/pixabay`](../adapters/pixabay/README.md) | ✅ | ❌ |
 | `producthunt/graphql-v2` | [`adapters/producthunt`](../adapters/producthunt/README.md) | ✅ | ❌ |
 | `qq/bot-api` | [`adapters/qq`](../adapters/qq/README.md) | ✅ | ✅ |
+| `quora/conversion-api-v0` | [`adapters/quoraconversions`](../adapters/quoraconversions/README.md) | ✅ | ❌ |
 | `rakuten-advertising/affiliate-apis-v1.0.0` | [`adapters/rakutenadvertising`](../adapters/rakutenadvertising/README.md) | ✅ | ❌ |
 | `reddit/data-api` | [`adapters/reddit`](../adapters/reddit/README.md) | ✅ | ✅ |
 | `reddit/ads-api-v3` | [`adapters/reddit/ads`](../adapters/reddit/ads/README.md) | ✅ | ✅ |
