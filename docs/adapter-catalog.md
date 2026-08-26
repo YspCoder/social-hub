@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 187 个已注册 API 产品适配器，其中 186 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 188 个已注册 API 产品适配器，其中 187 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -138,6 +138,7 @@
 | `snapchat/conversions-api-v3` | [`adapters/snapchat/conversions`](../adapters/snapchat/conversions/README.md) | ✅ | ❌ |
 | `snapchat/marketing-api-v1` | [`adapters/snapchat/marketing`](../adapters/snapchat/marketing/README.md) | ✅ | ✅ |
 | `soundcloud/public-api-v1` | [`adapters/soundcloud`](../adapters/soundcloud/README.md) | ✅ | ✅ |
+| `sovrn/commerce-api-v20230630` | [`adapters/sovrncommerce`](../adapters/sovrncommerce/README.md) | ✅ | ❌ |
 | `spotify/web-api-v1` | [`adapters/spotify`](../adapters/spotify/README.md) | ✅ | ✅ |
 | `stackexchange/api-v2.3` | [`adapters/stackexchange`](../adapters/stackexchange/README.md) | ✅ | ✅ |
 | `steam/web-api` | [`adapters/steam`](../adapters/steam/README.md) | ✅ | ❌ |
