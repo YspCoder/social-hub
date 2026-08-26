@@ -2,7 +2,7 @@
 
 > 基线日期：2026-08-26（Asia/Shanghai）
 
-本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 189 个已注册 API 产品适配器，其中 188 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
+本目录直接按 `adapters/**/adapter.go` 中的 `adapterName` 整理。当前共有 190 个已注册 API 产品适配器，其中 189 个目录包含 README，104 个目录包含本地 `_test.go` 文件。
 
 `✅` 表示对应文件已存在，`❌` 表示尚未存在。这里的“本地测试”只表示同目录存在测试文件，不代表测试当前通过，也不代表已使用真实平台账号完成验证。
 
@@ -151,6 +151,7 @@
 | `tenjin/s2s-api-v0` | [`adapters/tenjin`](../adapters/tenjin/README.md) | ✅ | ❌ |
 | `thetradedesk/platform-api-v3` | [`adapters/thetradedesk`](../adapters/thetradedesk/README.md) | ✅ | ❌ |
 | `threads/api` | [`adapters/threads`](../adapters/threads/README.md) | ✅ | ✅ |
+| `tidal/api-v2` | [`adapters/tidal`](../adapters/tidal/README.md) | ✅ | ❌ |
 | `tiktok/v2` | [`adapters/tiktok`](../adapters/tiktok/README.md) | ✅ | ✅ |
 | `tiktok/events-api-v2` | [`adapters/tiktok/conversions`](../adapters/tiktok/conversions/README.md) | ✅ | ❌ |
 | `tiktok/business-marketing-api-v1.3` | [`adapters/tiktok/marketing`](../adapters/tiktok/marketing/README.md) | ✅ | ✅ |

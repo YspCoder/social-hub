@@ -8,7 +8,7 @@
 <p>
   <img alt="Go 1.26" src="https://img.shields.io/badge/Go-1.26-00ADD8?logo=go&amp;logoColor=white">
   <img alt="MCP 2026-07-28" src="https://img.shields.io/badge/MCP-2026--07--28-7C3AED">
-  <img alt="189 个适配器产品" src="https://img.shields.io/badge/adapters-189-111827">
+  <img alt="190 个适配器产品" src="https://img.shields.io/badge/adapters-190-111827">
   <img alt="Alpha" src="https://img.shields.io/badge/status-alpha-F43F5E">
   <img alt="GitHub stars" src="https://img.shields.io/github/stars/YspCoder/social-hub?style=flat&amp;color=2563EB">
 </p>
@@ -35,11 +35,11 @@
 | 项目 | 状态 | 当前基线 |
 |---|:---:|---|
 | 公共模型与能力接口 | ✅ | 位于 `pkg/socialhub` |
-| 编译期适配器注册 | ✅ | 189 个已注册 API 产品 |
+| 编译期适配器注册 | ✅ | 190 个已注册 API 产品 |
 | YAML/JSON 严格配置 | ✅ | 配置版本 `1`，未知字段会报错 |
 | 运行时 Secret 引用 | ✅ | 内置 `env://`，支持自定义 resolver |
-| 每个适配器都有 README | ❌ | 188/189 个适配器包 |
-| 每个适配器都有本地测试文件 | ❌ | 104/189 个适配器包 |
+| 每个适配器都有 README | ❌ | 189/190 个适配器包 |
+| 每个适配器都有本地测试文件 | ❌ | 104/190 个适配器包 |
 | 每个适配器都完成真实账号验证 | ❌ | 当前不作此承诺 |
 | 稳定公开版本 | ❌ | Alpha 开发阶段 |
 
@@ -206,7 +206,7 @@ bin\social-hub-mcp.exe --transport stdio
 
 适配器目录直接依据 `adapters/**/adapter.go` 中的注册名整理，分别记录 Go package、独立 README 和本地测试文件是否存在，不把这些信号等同于真实账号授权。
 
-[查看全部 189 个已注册适配器产品 →](docs/adapter-catalog.md)
+[查看全部 190 个已注册适配器产品 →](docs/adapter-catalog.md)
 
 ## 仓库结构
 
